@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Diagnóstico Forense — Prova BB Agente Comercial 2023</title>
+<style>
+  :root {
+    --navy: #0b1f3a; --gold: #b8862b; --gold-light: #f4e4c1;
+    --red: #c0392b; --orange: #d68910; --yellow: #b7950b; --green: #1e8449; --blue: #2874a6;
+    --gray-bg: #f7f7f5; --border: #e0ddd5; --text: #2b2b2b;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; color:var(--text); background:var(--gray-bg); line-height:1.6; }
+  .layout { display:flex; max-width:1300px; margin:0 auto; }
+  nav { width:250px; flex-shrink:0; background:var(--navy); color:#fff; padding:28px 18px; position:sticky; top:0; height:100vh; overflow-y:auto; }
+  nav h2 { font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-light); margin:0 0 14px 0; }
+  nav a { display:block; color:#dbe3ee; text-decoration:none; font-size:13px; padding:5px 8px; border-radius:5px; margin-bottom:1px; }
+  nav a:hover { background:rgba(255,255,255,0.08); color:#fff; }
+  main { flex:1; padding:40px 48px 80px; background:#fff; min-width:0; }
+  header.hero { background:linear-gradient(135deg,var(--navy),#16305a); color:#fff; padding:34px 40px; border-radius:10px; margin-bottom:8px; }
+  header.hero h1 { margin:0 0 8px 0; font-size:24px; }
+  header.hero .subtitle { color:var(--gold-light); font-size:14px; font-weight:600; }
+  .banner-warning { background:#fdf2e9; border-left:5px solid var(--orange); padding:16px 20px; margin:22px 0 32px; border-radius:6px; font-size:14px; }
+  h2 { color:var(--navy); font-size:19px; margin-top:44px; padding-bottom:8px; border-bottom:2px solid var(--gold); }
+  h3 { color:var(--navy); font-size:15px; margin-top:22px; }
+  h2 .num { display:inline-block; background:var(--gold); color:#fff; font-size:12px; font-weight:700; padding:2px 9px; border-radius:20px; margin-right:8px; vertical-align:middle; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:12.8px; }
+  th, td { border:1px solid var(--border); padding:6px 9px; text-align:left; }
+  th { background:var(--navy); color:#fff; font-weight:600; font-size:11.5px; position:sticky; top:0; }
+  tr:nth-child(even) td { background:#faf9f6; }
+  td.num, th.num { text-align:right; }
+  .qtable { max-height:560px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; }
+  .qtable table { margin:0; }
+  ul, ol { padding-left:22px; } li { margin-bottom:5px; }
+  blockquote { background:#fdf2e9; border-left:5px solid var(--gold); margin:16px 0; padding:12px 18px; font-size:13.5px; font-style:italic; color:#5a4a2c; border-radius:6px; }
+  .badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700; color:#fff; }
+  .badge.red{background:var(--red);} .badge.orange{background:var(--orange);} .badge.yellow{background:var(--yellow);}
+  .badge.green{background:var(--green);} .badge.blue{background:var(--blue);}
+  .callout { background:#eef4ee; border-left:5px solid var(--green); padding:14px 18px; border-radius:6px; margin:16px 0; font-size:14px; }
+  .trap { background:#fdecea; border-left:5px solid var(--red); padding:12px 16px; margin-bottom:10px; border-radius:6px; font-size:13.5px; }
+  .trap strong.q { color:var(--red); }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:16px 0; }
+  .card { background:var(--gray-bg); border:1px solid var(--border); border-radius:8px; padding:16px 18px; }
+  .card h4 { margin:0 0 8px; color:var(--navy); font-size:14px; }
+  .stat { text-align:center; padding:14px; }
+  .stat .big { font-size:26px; font-weight:800; color:var(--navy); }
+  .stat .lbl { font-size:12px; color:#666; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--border); font-size:12px; color:#888; text-align:center; }
+  @media (max-width:900px){ nav{display:none;} main{padding:24px;} }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <h2>Índice</h2>
+  <a href="#s1">1. Perfil da prova</a>
+  <a href="#s2">2. Mapa de conteúdo (70 questões)</a>
+  <a href="#s3">3. Incidência por disciplina</a>
+  <a href="#s4">4. Nível de dificuldade</a>
+  <a href="#s5">5. Poder de diferenciação</a>
+  <a href="#s6">6. Pegadinhas</a>
+  <a href="#s7">7. Padrão da banca</a>
+  <a href="#s8">8. Qualidade das questões</a>
+  <a href="#s9">🔥 Top assuntos p/ estudar</a>
+  <a href="#s10">📅 Próximos passos</a>
+</nav>
+
+<main>
+
+<header class="hero">
+  <h1>Diagnóstico Forense da Prova</h1>
+  <div class="subtitle">Banco do Brasil · Escriturário Agente Comercial · Prova A, Gabarito 1 · Cesgranrio · 23/04/2023</div>
+</header>
+
+<div class="banner-warning">
+  <strong>⚠️ Sem suas respostas ainda.</strong> Esta análise usa o <strong>gabarito oficial da Cesgranrio</strong> (Prova A / Gabarito 1) para dissecar a prova em si — conteúdo, dificuldade, pegadinhas, padrão da banca. As seções de diagnóstico pessoal (seus erros, seus pontos fracos, questões para refazer) exigem que você me mande suas respostas questão a questão — envie quando puder e eu cruzo com o gabarito.
+</div>
+
+<h2 id="s1"><span class="num">1</span>Perfil da prova</h2>
+<table>
+<tr><th>Item</th><th>Informação</th></tr>
+<tr><td>Banca</td><td>FUNDAÇÃO CESGRANRIO</td></tr>
+<tr><td>Concurso</td><td>Seleção Externa 2022/001 — Edital nº 01-2022/001 BB</td></tr>
+<tr><td>Cargo</td><td>Escriturário — Agente Comercial</td></tr>
+<tr><td>Data da prova</td><td>23/04/2023</td></tr>
+<tr><td>Versão</td><td>Prova A, Gabarito 1</td></tr>
+<tr><td>Questões</td><td>70 objetivas (5 alternativas, 1 correta) + Redação</td></tr>
+<tr><td>Disciplinas</td><td>Português, Inglês, Matemática, Atualidades do Mercado Financeiro, Matemática Financeira, Conhecimentos Bancários, Conhecimentos de Informática, Vendas e Negociação</td></tr>
+<tr><td>Tempo de prova</td><td>5 horas (objetivas + redação)</td></tr>
+<tr><td>Peso das questões</td><td>1,0 a 1,5 ponto, conforme disciplina (ver edital)</td></tr>
+<tr><td>Redação</td><td>Sim — tema: "O desafio do resgate da cidadania e dos direitos das pessoas com deficiência no Brasil", 25 a 30 linhas, corte em 70,0 pontos</td></tr>
+</table>
+
+<h2 id="s2"><span class="num">2</span>Mapa de conteúdo — todas as 70 questões</h2>
+<p>Dificuldade: 🟢 fácil · 🟡 média · 🟠 difícil · 🔴 muito difícil. Classificação baseada em leitura técnica das questões e do gabarito oficial (não em dado estatístico de desempenho real de candidatos).</p>
+<div class="qtable">
+<table>
+<tr><th>Q</th><th>Disciplina</th><th>Tema</th><th>Dificuldade</th><th>Tipo de cobrança</th><th>Gab.</th></tr>
+<tr><td>1</td><td>Português</td><td>Compreensão de texto</td><td>🟢</td><td>Interpretação</td><td>B</td></tr>
+<tr><td>2</td><td>Português</td><td>Comparação de métodos (texto)</td><td>🟢</td><td>Interpretação/comparação</td><td>B</td></tr>
+<tr><td>3</td><td>Português</td><td>Coesão referencial</td><td>🟡</td><td>Interpretação/coesão</td><td>E</td></tr>
+<tr><td>4</td><td>Português</td><td>Reescrita mantendo sentido</td><td>🟠</td><td>Gramática/sintaxe</td><td>C</td></tr>
+<tr><td>5</td><td>Português</td><td>Polissemia ("ainda")</td><td>🟡</td><td>Interpretação lexical</td><td>A</td></tr>
+<tr><td>6</td><td>Português</td><td>Função da vírgula</td><td>🟡</td><td>Gramática</td><td>D</td></tr>
+<tr><td>7</td><td>Português</td><td>Valor semântico de oração (causa)</td><td>🟡</td><td>Gramática/interpretação</td><td>B</td></tr>
+<tr><td>8</td><td>Português</td><td>Crase</td><td>🟡</td><td>Gramática (regra)</td><td>E</td></tr>
+<tr><td>9</td><td>Português</td><td>Concordância nominal</td><td>🟡</td><td>Gramática</td><td>D</td></tr>
+<tr><td>10</td><td>Português</td><td>Colocação pronominal</td><td>🟠</td><td>Gramática (regra específica)</td><td>C</td></tr>
+<tr><td>11</td><td>Inglês</td><td>Ideia principal do texto</td><td>🟢</td><td>Interpretação</td><td>B</td></tr>
+<tr><td>12</td><td>Inglês</td><td>Modal "would" — hipótese</td><td>🟡</td><td>Gramática/interpretação</td><td>C</td></tr>
+<tr><td>13</td><td>Inglês</td><td>Vocabulário em contexto ("take root")</td><td>🟡</td><td>Vocabulário</td><td>E</td></tr>
+<tr><td>14</td><td>Inglês</td><td>Vocabulário em contexto ("in the meantime")</td><td>🟡</td><td>Vocabulário</td><td>E</td></tr>
+<tr><td>15</td><td>Inglês</td><td>Paráfrase de trecho</td><td>🟢</td><td>Interpretação</td><td>B</td></tr>
+<tr><td>16</td><td>Matemática</td><td>Paradoxo lógico (assertivas autorreferentes)</td><td>🔴</td><td>Raciocínio lógico</td><td>D</td></tr>
+<tr><td>17</td><td>Matemática</td><td>Otimização (receita máxima)</td><td>🟠</td><td>Cálculo/raciocínio</td><td>B</td></tr>
+<tr><td>18</td><td>Matemática</td><td>Padrão em tabela / aritmética modular</td><td>🔴</td><td>Raciocínio + cálculo</td><td>E</td></tr>
+<tr><td>19</td><td>Matemática</td><td>Sistema linear (3 variáveis)</td><td>🟡</td><td>Cálculo</td><td>D</td></tr>
+<tr><td>20</td><td>Matemática</td><td>Combinatória (conjuntos sem repetição)</td><td>🔴</td><td>Raciocínio combinatório</td><td>A</td></tr>
+<tr><td>21</td><td>Atualidades</td><td>Bancos na era digital</td><td>🟢</td><td>Conhecimento factual</td><td>C</td></tr>
+<tr><td>22</td><td>Atualidades</td><td>Funções da moeda</td><td>🟢</td><td>Conceito</td><td>A</td></tr>
+<tr><td>23</td><td>Atualidades</td><td>PIX — regulamentação de horário noturno</td><td>🟠</td><td>Legislação seca (normativo)</td><td>B</td></tr>
+<tr><td>24</td><td>Atualidades</td><td>Blockchain — mineração</td><td>🟡</td><td>Conhecimento factual</td><td>D</td></tr>
+<tr><td>25</td><td>Atualidades</td><td>Shadow banking — supervisão</td><td>🟠</td><td>Conhecimento específico</td><td>E</td></tr>
+<tr><td>26</td><td>Mat. Financeira</td><td>Juros compostos com imposto</td><td>🟡</td><td>Cálculo</td><td>A</td></tr>
+<tr><td>27</td><td>Mat. Financeira</td><td>Taxa anual equivalente (composta)</td><td>🟡</td><td>Cálculo (com dado fornecido)</td><td>C</td></tr>
+<tr><td>28</td><td>Mat. Financeira</td><td>Juros simples com imposto</td><td>🟡</td><td>Cálculo</td><td>D</td></tr>
+<tr><td>29</td><td>Mat. Financeira</td><td>Equivalência financeira de parcelas</td><td>🟠</td><td>Cálculo</td><td>B</td></tr>
+<tr><td>30</td><td>Mat. Financeira</td><td>Saldo devedor com amortizações</td><td>🟠</td><td>Cálculo</td><td>D</td></tr>
+<tr><td>31</td><td>Bancários</td><td>Lavagem de dinheiro — Carta Circular 4.001/2020</td><td>🟠</td><td>Legislação seca</td><td>A</td></tr>
+<tr><td>32</td><td>Bancários</td><td>Código de Ética BB — diferenças religiosas</td><td>🟢</td><td>Conhecimento/ética</td><td>B</td></tr>
+<tr><td>33</td><td>Bancários</td><td>Segurança cibernética — Resolução 4.658/2018</td><td>🟠</td><td>Legislação seca</td><td>E</td></tr>
+<tr><td>34</td><td>Bancários</td><td>Câmbio real — impacto em exportações</td><td>🟡</td><td>Conceito econômico</td><td>D</td></tr>
+<tr><td>35</td><td>Bancários</td><td>Função da tesouraria bancária</td><td>🟢</td><td>Conceito</td><td>C</td></tr>
+<tr><td>36</td><td>Bancários</td><td>Paridade do poder de compra (PPP)</td><td>🟠</td><td>Teoria econômica</td><td>B</td></tr>
+<tr><td>37</td><td>Bancários</td><td>Expansão da oferta de moeda (M1)</td><td>🟡</td><td>Conceito monetário</td><td>A</td></tr>
+<tr><td>38</td><td>Bancários</td><td>Juros EUA x câmbio — raciocínio</td><td>🟡</td><td>Raciocínio econômico</td><td>A</td></tr>
+<tr><td>39</td><td>Bancários</td><td>Câmbio fixo — implicações</td><td>🟠</td><td>Teoria econômica</td><td>E</td></tr>
+<tr><td>40</td><td>Bancários</td><td>Atribuições do CMN</td><td>🟠</td><td>Conhecimento normativo (pegadinha)</td><td>B</td></tr>
+<tr><td>41</td><td>Informática</td><td>Excel — função CONT.SE</td><td>🟡</td><td>Cálculo/aplicação</td><td>B</td></tr>
+<tr><td>42</td><td>Informática</td><td>MS Teams — Canal</td><td>🟢</td><td>Conhecimento factual</td><td>A</td></tr>
+<tr><td>43</td><td>Informática</td><td>Protocolos de e-mail (HTTP/SMTP)</td><td>🟠</td><td>Conhecimento técnico específico</td><td>A</td></tr>
+<tr><td>44</td><td>Informática</td><td>Windows Hello</td><td>🟢</td><td>Conhecimento factual</td><td>B</td></tr>
+<tr><td>45</td><td>Informática</td><td>Word — histórico de versões</td><td>🟡</td><td>Conhecimento aplicado</td><td>C</td></tr>
+<tr><td>46</td><td>Informática</td><td>Mecanismo de segurança — autorização</td><td>🟡</td><td>Conceito</td><td>D</td></tr>
+<tr><td>47</td><td>Informática</td><td>Sistema de arquivos — NTFS</td><td>🟡</td><td>Conhecimento técnico</td><td>E</td></tr>
+<tr><td>48</td><td>Informática</td><td>Decodificação de arquivo de áudio</td><td>🟢</td><td>Conceito básico</td><td>D</td></tr>
+<tr><td>49</td><td>Informática</td><td>SAD nível estratégico</td><td>🟡</td><td>Conceito</td><td>D</td></tr>
+<tr><td>50</td><td>Informática</td><td>Google Drive</td><td>🟢</td><td>Conhecimento factual</td><td>B</td></tr>
+<tr><td>51</td><td>Informática</td><td>Caixa de e-mail cheia</td><td>🟡</td><td>Interpretação técnica</td><td>A</td></tr>
+<tr><td>52</td><td>Informática</td><td>Atualização de antivírus</td><td>🟢</td><td>Conceito</td><td>D</td></tr>
+<tr><td>53</td><td>Informática</td><td>BI — conceito de dashboard</td><td>🟠</td><td>Conhecimento técnico específico</td><td>E</td></tr>
+<tr><td>54</td><td>Informática</td><td>EaD — autoaprendizagem</td><td>🟡</td><td>Interpretação/conhecimento</td><td>B</td></tr>
+<tr><td>55</td><td>Informática</td><td>Firefox — atalho de navegação privativa</td><td>🟠</td><td>Conhecimento técnico (memorização)</td><td>D</td></tr>
+<tr><td>56</td><td>Vendas</td><td>Lei 13.146 — atendimento prioritário PcD</td><td>🟢</td><td>Legislação aplicada</td><td>D</td></tr>
+<tr><td>57</td><td>Vendas</td><td>CDC — informação adequada</td><td>🟡</td><td>Legislação aplicada</td><td>B</td></tr>
+<tr><td>58</td><td>Vendas</td><td>Resolução 4.860/2020 — ouvidoria</td><td>🟡</td><td>Legislação aplicada</td><td>D</td></tr>
+<tr><td>59</td><td>Vendas</td><td>Ética — conflito de interesses</td><td>🟡</td><td>Conceito/estudo de caso</td><td>C</td></tr>
+<tr><td>60</td><td>Vendas</td><td>Taxa de abandono (cálculo em tabela)</td><td>🟡</td><td>Cálculo aplicado</td><td>A</td></tr>
+<tr><td>61</td><td>Vendas</td><td>Dimensões da qualidade — confiabilidade</td><td>🟡</td><td>Conceito</td><td>E</td></tr>
+<tr><td>62</td><td>Vendas</td><td>Jornada do cliente — modelo 5A's (assimilação)</td><td>🟠</td><td>Conhecimento teórico específico</td><td>D</td></tr>
+<tr><td>63</td><td>Vendas</td><td>Inbound marketing — exemplo aplicado</td><td>🟡</td><td>Aplicação de conceito</td><td>C</td></tr>
+<tr><td>64</td><td>Vendas</td><td>Inseparabilidade do serviço</td><td>🟠</td><td>Conceito técnico</td><td>D</td></tr>
+<tr><td>65</td><td>Vendas</td><td>Pesquisa de satisfação — objetivo</td><td>🟢</td><td>Conceito</td><td>B</td></tr>
+<tr><td>66</td><td>Vendas</td><td>Valor percebido — custos não financeiros</td><td>🟡</td><td>Conceito</td><td>A</td></tr>
+<tr><td>67</td><td>Vendas</td><td>Personalização em massa</td><td>🟠</td><td>Conceito de marketing</td><td>A</td></tr>
+<tr><td>68</td><td>Vendas</td><td>Gatilhos mentais — escassez/urgência</td><td>🟡</td><td>Aplicação de conceito</td><td>E</td></tr>
+<tr><td>69</td><td>Vendas</td><td>Riscos percebidos na pré-compra</td><td>🟠</td><td>Conceito teórico específico</td><td>C</td></tr>
+<tr><td>70</td><td>Vendas</td><td>Variáveis do ambiente interno de marketing</td><td>🟡</td><td>Conceito teórico</td><td>B</td></tr>
+</table>
+</div>
+
+<h2 id="s3"><span class="num">3</span>Incidência por disciplina</h2>
+<table>
+<tr><th>Disciplina</th><th class="num">Nº questões</th><th class="num">% da prova</th></tr>
+<tr><td>Vendas e Negociação</td><td class="num">15</td><td class="num">21,4%</td></tr>
+<tr><td>Conhecimentos de Informática</td><td class="num">15</td><td class="num">21,4%</td></tr>
+<tr><td>Língua Portuguesa</td><td class="num">10</td><td class="num">14,3%</td></tr>
+<tr><td>Conhecimentos Bancários</td><td class="num">10</td><td class="num">14,3%</td></tr>
+<tr><td>Língua Inglesa</td><td class="num">5</td><td class="num">7,1%</td></tr>
+<tr><td>Matemática</td><td class="num">5</td><td class="num">7,1%</td></tr>
+<tr><td>Atualidades do Mercado Financeiro</td><td class="num">5</td><td class="num">7,1%</td></tr>
+<tr><td>Matemática Financeira</td><td class="num">5</td><td class="num">7,1%</td></tr>
+</table>
+<div class="callout"><strong>Nesta prova, observamos</strong> que dentro de Vendas e Negociação houve forte concentração em legislação de proteção ao cliente (Lei 13.146, CDC, Resolução 4.860) e em teoria de marketing com nomenclatura específica (5A's, riscos de pré-compra, personalização em massa) — não é possível generalizar isso como padrão histórico da banca com uma única prova.</div>
+
+<h2 id="s4"><span class="num">4</span>Nível de dificuldade</h2>
+<div class="grid-3">
+  <div class="card stat"><div class="big">21,4%</div><div class="lbl">🟢 Fáceis (15 questões)</div></div>
+  <div class="card stat"><div class="big">45,7%</div><div class="lbl">🟡 Médias (32 questões)</div></div>
+  <div class="card stat"><div class="big">28,6%</div><div class="lbl">🟠 Difíceis (20 questões)</div></div>
+</div>
+<div class="callout">4,3% (3 questões) são 🔴 muito difíceis — as três de Matemática (16, 18, 20), propositalmente elaboradas para exigir tempo e raciocínio elevado.</div>
+<p><strong>A prova foi fácil, média ou difícil?</strong> No cômputo geral, uma prova de dificuldade <strong>média para média-alta</strong>: quase metade das questões (46%) exige articulação de conceito + interpretação (não pura memorização), e há blocos de dificuldade concentrada — Matemática (3 de 5 questões muito difíceis/difíceis) e trechos de legislação seca em Bancários e Atualidades (números exatos de resoluções e prazos).</p>
+
+<h2 id="s5"><span class="num">5</span>Poder de diferenciação</h2>
+<div class="grid-2">
+  <div class="card"><h4>Questões de manutenção (24)</h4><p>Um candidato preparado deveria acertar: 1, 2, 11, 15, 21, 22, 32, 35, 42, 44, 48, 50, 52, 56, 65 (todas 🟢) + boa parte das 🟡 mais diretas (26, 28, 34, 37, 41, 45, 46, 57, 60, 61, 63).</p></div>
+  <div class="card"><h4>Questões de diferenciação (~26)</h4><p>Separam quem estudou a fundo de quem só passou por cima: a maior parte das 🟡/🟠 que exigem interpretação combinada com conceito específico — ex. Q3, Q6, Q7, Q8, Q9, Q19, Q24, Q27, Q29, Q30, Q38, Q49, Q51, Q54, Q58, Q59, Q66, Q68, Q70.</p></div>
+</div>
+<div class="card" style="margin-top:6px;"><h4>Questões de elite (~20)</h4><p>Exigem domínio excepcional de detalhe normativo ou raciocínio avançado: as 3 muito difíceis de Matemática (16, 18, 20) + as de legislação seca com número exato de norma (23, 31, 33, 40) + as teóricas de nicho em Vendas (62, 64, 67, 69) + Informática de detalhe técnico memorizado (43, 47, 53, 55) + as de macroeconomia cambial mais abstratas (36, 39).</p></div>
+
+<h2 id="s6"><span class="num">6</span>⚠️ Pegadinhas</h2>
+
+<div class="trap"><strong class="q">Q9 —</strong> a alternativa (E) usa a palavra "menas", que simplesmente não existe na norma-padrão ("menos" é invariável). É uma pegadinha de armadilha óbvia para quem lê rápido e não repara que a forma é inventada — a banca conta com o candidato reconhecer "menas" como errado por eliminação, não pela regra específica de concordância que o comando pede.</div>
+
+<div class="trap"><strong class="q">Q40 —</strong> troca de atribuições entre órgãos: a alternativa (B), "autorizar a emissão de papel-moeda", é atribuição do <em>Banco Central</em>, não do CMN (órgão normativo, não executor). Clássica pegadinha de "instituição errada para a atribuição certa".</div>
+
+<div class="trap"><strong class="q">Q25 —</strong> pede qual entidade já supervisiona o shadow banking; as alternativas (A)-(C) são só nomes de bancos (irrelevantes à pergunta sobre supervisão regulatória), testando se o candidato entende a diferença entre "instituição financeira" e "órgão supervisor" — a resposta certa é a CVM.</div>
+
+<div class="trap"><strong class="q">Q56 —</strong> a alternativa (C) usa a palavra "privilégio" para descrever uma ação que a lei classifica como <em>direito</em> — troca de termo com carga semântica oposta, tentando levar o candidato a marcar uma opção que "soa crítica" mas está juridicamente errada.</div>
+
+<div class="trap"><strong class="q">Q39 —</strong> a alternativa (D) fala de "câmbio entre Real e moeda europeia", um assunto que não tem relação nenhuma com o regime de câmbio fixo Real/Dólar descrito no enunciado — extrapolação do escopo da pergunta para confundir por associação superficial ("câmbio" aparece na frase, mas não responde à pergunta).</div>
+
+<div class="trap"><strong class="q">Q4 —</strong> pede reescrita "sem alterar o sentido". As alternativas (B) "Embora pesquisasse..." e (D) "Apesar de pesquisar..." parecem sinônimas à primeira vista (ambas concessivas), mas alteram sutilmente o valor semântico do original (que é temporal: "pesquisando" = "enquanto pesquisava"). Pegadinha clássica de troca de conectivo com sentido semelhante mas não idêntico.</div>
+
+<h2 id="s7"><span class="num">7</span>Padrão da banca (nesta prova)</h2>
+<ul>
+  <li><strong>Literalidade:</strong> alta em legislação/normativos (cobra número exato de lei/resolução — Q23, 31, 33, 40, 56-58) — não basta saber o conceito, é preciso saber a fonte normativa.</li>
+  <li><strong>Enunciados:</strong> longos e contextualizados em estudo de caso, principalmente em Vendas e Bancários (a resposta certa depende de identificar qual regra/conceito o caso ilustra, não de decorar definição solta).</li>
+  <li><strong>Interpretação vs. memorização:</strong> equilíbrio — Português e Inglês são quase 100% interpretação; Bancários/Atualidades misturam conceito com norma decorada; Informática mistura conceito com detalhe técnico memorizado (atalhos, protocolos, nomes de recursos específicos de versão de software).</li>
+  <li><strong>Matemática:</strong> poucas questões (5), mas todas de alto raciocínio, sem cálculo mecânico simples — a banca aqui filtra por raciocínio lógico-estruturado, não por "decoreba de fórmula".</li>
+  <li><strong>Interdisciplinaridade:</strong> praticamente nenhuma — cada questão fica dentro da sua disciplina, sem mistura.</li>
+</ul>
+<p><em>Nesta prova, observamos</em> esse padrão; ele é consistente com o que se relata informalmente sobre a Cesgranrio em concursos do BB, mas eu não tenho aqui uma amostra de múltiplas provas históricas para afirmar isso como tendência estatística confirmada — trato como inferência razoável, não certeza.</p>
+
+<h2 id="s8"><span class="num">8</span>Qualidade das questões — pontos de atenção</h2>
+<div class="callout">Não identifiquei, nesta leitura, questões com erro material evidente, ambiguidade grave ou duas alternativas defensáveis como corretas — a prova parece tecnicamente bem construída. Dito isso, dois pontos merecem nota, sem que eu declare anulabilidade sem mais fundamentação:</div>
+<ul>
+  <li><strong>Q16</strong> (paradoxo lógico): a formulação depende de uma leitura extremamente cuidadosa do enunciado auto-referente; é logicamente correta, mas o nível de abstração é alto para uma prova de nível médio — <em>discutível</em> se é adequada ao perfil do cargo, não se está errada.</li>
+  <li><strong>Q23</strong> (horário PIX): depende de memorização de um intervalo horário definido em normativo do Banco Central que pode ter sido atualizado desde a aplicação da prova (2023) — vale checar se a regra ainda está vigente da mesma forma, mas isso não torna a questão "errada" no momento em que foi aplicada.</li>
+</ul>
+
+<h2 id="s9">🔥 Top assuntos para estudar (a partir da estrutura da prova)</h2>
+<ol>
+  <li><strong>Raciocínio lógico e combinatória em Matemática</strong> — 3 das 5 questões foram de dificuldade muito alta, concentração de risco.</li>
+  <li><strong>Legislação bancária específica com número de norma</strong> (Carta Circular 4.001/2020, Resolução CMN 4.658/2018, atribuições CMN x BCB) — pegadinhas de "instituição errada" são recorrentes.</li>
+  <li><strong>Concordância e colocação pronominal em Português</strong> — regras finas, testadas com alternativas quase idênticas.</li>
+  <li><strong>Detalhes técnicos de Informática</strong> (protocolos de e-mail, sistemas de arquivos, atalhos específicos de aplicativo) — exige memorização pontual, não só conceito geral.</li>
+  <li><strong>Teoria de marketing/vendas com nomenclatura de modelo</strong> (5A's, riscos percebidos na pré-compra, personalização em massa, inseparabilidade) — terminologia acadêmica específica, não intuição comercial.</li>
+  <li><strong>Câmbio e política monetária</strong> (paridade do poder de compra, regime de câmbio fixo) — questões teóricas abstratas, não de cálculo.</li>
+  <li><strong>Equivalência financeira de fluxos de caixa e saldo devedor com amortização parcial</strong> — cálculo em vários passos, risco de erro de percurso.</li>
+  <li><strong>Inglês: modais e vocabulário em contexto</strong> ("would", "take root", "in the meantime") — não é vocabulário básico, é uso funcional em texto de opinião/notícia.</li>
+  <li><strong>Coesão textual e reescrita mantendo sentido em Português</strong> — troca de conectivo com sentido próximo mas não idêntico.</li>
+  <li><strong>Normativos recentes que se repetem entre disciplinas</strong> (LGPD, segurança cibernética, ASG) — aparecem tanto em Bancários quanto podem aparecer em Vendas/Atualidades; vale unificar o estudo dessas leis num único bloco.</li>
+</ol>
+
+<h2 id="s10">📅 Próximos passos</h2>
+<ol>
+  <li><strong>Me envie suas respostas questão a questão</strong> (ou pelo menos das que você já resolveu) — com isso eu cruzo com o gabarito oficial acima e monto a matriz de erros, diagnóstico por disciplina e as questões prioritárias para refazer em 24h/7 dias/30 dias.</li>
+  <li>Se quiser, também me diga seu grau de confiança em cada resposta (certeza, eliminação, chute) — isso refina a análise entre "acerto seguro" e "acerto por sorte".</li>
+  <li>Enquanto isso, já dá pra atacar os 10 assuntos acima como prioridade, já que eles concentram o maior risco estrutural da prova, independente do seu resultado individual.</li>
+</ol>
+
+<footer>Fonte do gabarito oficial: Fundação Cesgranrio, Prova A / Gabarito 1, Seleção Externa BB 2022/001, aplicada em 23/04/2023.</footer>
+
+</main>
+</div>
+</body>
+</html>

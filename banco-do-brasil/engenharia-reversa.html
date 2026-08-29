@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Engenharia Reversa — Concurso BB Escriturário (Agente Comercial)</title>
+<style>
+  :root {
+    --navy: #0b1f3a;
+    --gold: #b8862b;
+    --gold-light: #f4e4c1;
+    --red: #c0392b;
+    --orange: #d68910;
+    --yellow: #b7950b;
+    --green: #1e8449;
+    --gray-bg: #f7f7f5;
+    --border: #e0ddd5;
+    --text: #2b2b2b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--gray-bg);
+    line-height: 1.6;
+  }
+  .layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  nav {
+    width: 250px;
+    flex-shrink: 0;
+    background: var(--navy);
+    color: #fff;
+    padding: 28px 18px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+    margin: 0 0 14px 0;
+  }
+  nav a {
+    display: block;
+    color: #dbe3ee;
+    text-decoration: none;
+    font-size: 13.5px;
+    padding: 6px 8px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+  }
+  nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  main {
+    flex: 1;
+    padding: 40px 48px 80px;
+    background: #fff;
+    min-width: 0;
+  }
+  header.hero {
+    background: linear-gradient(135deg, var(--navy), #16305a);
+    color: #fff;
+    padding: 34px 40px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  header.hero h1 {
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    letter-spacing: 0.2px;
+  }
+  header.hero .subtitle {
+    color: var(--gold-light);
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .banner-warning {
+    background: #fdf2e9;
+    border-left: 5px solid var(--orange);
+    padding: 16px 20px;
+    margin: 22px 0 32px;
+    border-radius: 6px;
+    font-size: 14.5px;
+  }
+  .banner-warning strong { color: #a04000; }
+  h2 {
+    color: var(--navy);
+    font-size: 20px;
+    margin-top: 46px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+  }
+  h3 {
+    color: var(--navy);
+    font-size: 16px;
+    margin-top: 26px;
+  }
+  h2 .num {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    text-align: left;
+  }
+  th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  tr:nth-child(even) td { background: #faf9f6; }
+  td.num, th.num { text-align: right; }
+  .subtable-label {
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 18px;
+    display: block;
+  }
+  .tree {
+    background: var(--gray-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .tree .branch { color: var(--navy); font-weight: 700; display: block; margin-top: 10px; }
+  .tree .branch:first-child { margin-top: 0; }
+  .tree .leaves { color: #444; font-size: 13.8px; padding-left: 14px; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  blockquote {
+    background: #fdf2e9;
+    border-left: 5px solid var(--gold);
+    margin: 16px 0;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-style: italic;
+    color: #5a4a2c;
+    border-radius: 6px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .badge.red { background: var(--red); }
+  .badge.orange { background: var(--orange); }
+  .badge.yellow { background: var(--yellow); }
+  .badge.green { background: var(--green); }
+  .callout {
+    background: #eef4ee;
+    border-left: 5px solid var(--green);
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .risk {
+    background: #fdecea;
+    border-left: 5px solid var(--red);
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .card {
+    background: var(--gray-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .card h4 { margin: 0 0 8px; color: var(--navy); font-size: 14.5px; }
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: #888;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <h2>Índice</h2>
+  <a href="#s1">1. Identificação</a>
+  <a href="#s2">2. Cronologia</a>
+  <a href="#s3">3. Estrutura da prova</a>
+  <a href="#s4">4. Critério de aprovação</a>
+  <a href="#s5">5–6. Conteúdo programático</a>
+  <a href="#s7">7. Priorização</a>
+  <a href="#s8">8. Análise da banca</a>
+  <a href="#s9">9. Matriz de prioridade</a>
+  <a href="#s10">10. Custo × benefício</a>
+  <a href="#s11">11. Distribuição de tempo</a>
+  <a href="#s12">12. Ciclo de estudos</a>
+  <a href="#s13">13. Questões</a>
+  <a href="#s14">14. Revisão</a>
+  <a href="#s15">15. Simulados</a>
+  <a href="#s16">16. Redação</a>
+  <a href="#s17">17. Riscos</a>
+  <a href="#s18">18. O que não estudar</a>
+  <a href="#s19">19. Reta final</a>
+  <a href="#s20">🎯 Top prioridades</a>
+  <a href="#s21">📅 Próximos passos</a>
+</nav>
+
+<main>
+
+<header class="hero">
+  <h1>Engenharia Reversa — Concurso BB Escriturário</h1>
+  <div class="subtitle">Agente Comercial · Baseado no Edital nº 01-2022/001 (Cesgranrio)</div>
+</header>
+
+<div class="banner-warning">
+  <strong>⚠️ Validade expirada em 14/07/2025.</strong> Este é o edital anterior — o próximo ainda não foi publicado (BB definindo banca entre Cesgranrio, FGV e Cebraspe; expectativa para o 2º semestre de 2026 ou início de 2027). Uso este documento como <strong>base estrutural de estudo</strong>, já que a Cesgranrio é a banca histórica do BB. Tudo marcado <em>"dado do edital 2022"</em> é fato verificado no PDF; tudo marcado <em>"inferência"</em> é leitura estratégica, não garantia.
+</div>
+
+<h2 id="s1"><span class="num">1</span>Identificação do concurso <small style="font-size:12px;color:#999;">(dado do edital 2022)</small></h2>
+<table>
+<tr><th>Item</th><th>Informação</th></tr>
+<tr><td>Órgão/Entidade</td><td>Banco do Brasil S.A.</td></tr>
+<tr><td>Banca</td><td>FUNDAÇÃO CESGRANRIO</td></tr>
+<tr><td>Cargo</td><td>Escriturário — Nome de Relacionamento: <strong>Agente Comercial</strong></td></tr>
+<tr><td>Vagas + CR (nacional)</td><td>Total de ~6.000 (AC + CR), distribuídas por microrregião</td></tr>
+<tr><td>Remuneração inicial (2022)</td><td>R$ 3.622,23 — hoje já reajustada (fontes de mercado indicam ~R$ 4.314,69 em 2026, não confirmado em edital)</td></tr>
+<tr><td>Jornada</td><td>30h semanais</td></tr>
+<tr><td>Regime</td><td>CLT</td></tr>
+<tr><td>Escolaridade</td><td>Ensino médio completo</td></tr>
+<tr><td>Idade mínima</td><td>18 anos na admissão</td></tr>
+<tr><td>Inscrição</td><td>R$ 50,00 (2022)</td></tr>
+<tr><td>Duração da prova</td><td>5 horas</td></tr>
+<tr><td>Etapas</td><td>1) Objetivas (elim./classif.) → 2) Redação (elim.) → 3) Aferição autodeclaração negros (elim., só quem se autodeclara) → 4) Procedimentos admissionais/perícia médica (elim.)</td></tr>
+<tr><td>Validade do concurso</td><td>1 ano da homologação, prorrogável 1x por igual período</td></tr>
+</table>
+
+<h2 id="s2"><span class="num">2</span>Cronologia — não aplicável ao próximo edital</h2>
+<p>O cronograma do PDF (inscrições dez/2022–mar/2023, prova em 23/04/2023, resultado final 14/07/2023) é <strong>histórico</strong>. Quando o novo edital sair, a estrutura de prazos costuma seguir um padrão parecido: ~70 dias de inscrição, prova ~50 dias após o fim das inscrições, gabarito no dia seguinte, resultado final ~3 meses após a prova. Use isso só como referência de ritmo, não como data real.</p>
+
+<h2 id="s3"><span class="num">3</span>Estrutura da prova — Agente Comercial <small style="font-size:12px;color:#999;">(dado do edital 2022)</small></h2>
+<p>70 questões objetivas (5 alternativas, 1 correta), 100 pontos totais, dividida em:</p>
+
+<span class="subtable-label">Conhecimentos Básicos — 25 questões / 32,5 pontos (32,5% do peso)</span>
+<table>
+<tr><th>Disciplina</th><th class="num">Questões</th><th class="num">Peso/questão</th><th class="num">Subtotal</th></tr>
+<tr><td>Língua Portuguesa</td><td class="num">10</td><td class="num">1,5</td><td class="num">15,0</td></tr>
+<tr><td>Matemática</td><td class="num">5</td><td class="num">1,5</td><td class="num">7,5</td></tr>
+<tr><td>Língua Inglesa</td><td class="num">5</td><td class="num">1,0</td><td class="num">5,0</td></tr>
+<tr><td>Atualidades do Mercado Financeiro</td><td class="num">5</td><td class="num">1,0</td><td class="num">5,0</td></tr>
+</table>
+
+<span class="subtable-label">Conhecimentos Específicos — 45 questões / 67,5 pontos (67,5% do peso)</span>
+<table>
+<tr><th>Disciplina</th><th class="num">Questões</th><th class="num">Peso/questão</th><th class="num">Subtotal</th></tr>
+<tr><td>Vendas e Negociação</td><td class="num">15</td><td class="num">1,5</td><td class="num">22,5</td></tr>
+<tr><td>Conhecimentos de Informática</td><td class="num">15</td><td class="num">1,5</td><td class="num">22,5</td></tr>
+<tr><td>Conhecimentos Bancários</td><td class="num">10</td><td class="num">1,5</td><td class="num">15,0</td></tr>
+<tr><td>Matemática Financeira</td><td class="num">5</td><td class="num">1,5</td><td class="num">7,5</td></tr>
+</table>
+
+<div class="callout">Não confunda quantidade de questões com peso — aqui coincidem porque todas as específicas valem 1,5 pt, mas repare: Vendas e Negociação e Informática, juntas, já são <strong>45% da prova inteira</strong>.</div>
+
+<h2 id="s4"><span class="num">4</span>Critério de aprovação <small style="font-size:12px;color:#999;">(dado do edital 2022)</small></h2>
+
+<div class="grid-2">
+  <div class="card">
+    <h4>❌ ELIMINAÇÃO (tira do concurso)</h4>
+    <ul>
+      <li>Aproveitamento &lt; 50% no total das objetivas</li>
+      <li>Aproveitamento &lt; 50% em Conhecimentos Básicos como bloco</li>
+      <li>Aproveitamento &lt; 50% em Conhecimentos Específicos como bloco</li>
+      <li>Nota 0 (zero) em qualquer disciplina isolada</li>
+      <li>Nota &lt; 70,0 pontos na Redação</li>
+      <li>Não comparecimento a qualquer etapa</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>↕️ CLASSIFICAÇÃO (só reordena)</h4>
+    <ul>
+      <li>Total de pontos nas objetivas, para quem passou nos cortes</li>
+      <li>Habilitação para Redação: só corrige até o triplo do total de vagas+CR da microrregião</li>
+    </ul>
+  </div>
+</div>
+
+<p><strong>CADASTRO RESERVA:</strong> classificado dentro do CR = expectativa de nomeação, não direito automático, dentro da validade do concurso.</p>
+<p><strong>Critério de desempate</strong> (ordem, do edital 2022): idoso ≥60 anos → maior nota em Específicos → Vendas e Negociação → Informática → Bancários → Português → Matemática → Atualidades → maior idade → função de jurado.</p>
+
+<h2 id="s5"><span class="num">5–6</span>Conteúdo programático em árvore <small style="font-size:12px;color:#999;">(dado do edital 2022)</small></h2>
+
+<h3>Conhecimentos Básicos</h3>
+<div class="tree">
+  <span class="branch">Língua Portuguesa</span>
+  <span class="leaves">Compreensão de textos → Ortografia oficial → Classe e emprego de palavras → Crase → Sintaxe da oração e do período → Pontuação → Concordância verbal e nominal → Regência verbal e nominal → Colocação pronominal (próclise/mesóclise/ênclise)</span>
+
+  <span class="branch">Língua Inglesa</span>
+  <span class="leaves">Vocabulário fundamental → Gramática básica aplicada à compreensão de texto</span>
+
+  <span class="branch">Matemática</span>
+  <span class="leaves">Números inteiros/racionais/reais, contagem → Sistema legal de medidas → Razão/proporção/regra de três/porcentagem → Lógica proposicional → Conjuntos → Funções (polinomiais, exponenciais, logarítmicas) → Matrizes → Determinantes → Sistemas lineares → Sequências, PA e PG</span>
+
+  <span class="branch">Atualidades do Mercado Financeiro</span>
+  <span class="leaves">Bancos na era digital → Internet/Mobile/Open banking → Fintechs, startups, big techs → Shadow banking → Funções da moeda → Blockchain, bitcoin, criptomoedas → Marketplace → Correspondentes bancários → Arranjos de pagamento → PIX → Segmentação e interações digitais → Transformação digital no SFN</span>
+</div>
+
+<h3>Conhecimentos Específicos (Agente Comercial)</h3>
+<div class="tree">
+  <span class="branch">Matemática Financeira</span>
+  <span class="leaves">Valor do dinheiro no tempo, capital, juros, capitalização, fluxo de caixa, equivalência financeira → Juros simples → Juros compostos → Sistemas de amortização: Price e SAC</span>
+
+  <span class="branch">Conhecimentos Bancários</span>
+  <span class="leaves">Estrutura do SFN, órgãos normativos/supervisores/operadores → Mercados monetário, de crédito, de capitais, cambial → Moeda e política monetária: Selic, operações compromissadas, Quantitative Easing → Orçamento público, títulos do Tesouro, dívida pública → Produtos bancários: cartões, CDC, crédito rural, poupança, capitalização, previdência, consórcio, investimentos, seguros → Mercado de câmbio: regimes de taxa, taxas nominais/reais, impacto no comércio exterior, diferencial de juros → Operações interbancárias, tesouraria, varejo, recuperação de crédito → Garantias: aval, fiança, penhor, alienação fiduciária, hipoteca, fiança bancária → Lavagem de dinheiro: Lei 9.613/98, Circular 3.978/2020, Carta Circular 4.001/2020 → Autorregulação bancária (SARB) → Sigilo bancário: LC 105/2001 → LGPD: Lei 13.709/2018 → Lei anticorrupção: Lei 12.846/2013, Decreto 11.129/2022 → Segurança cibernética: Resolução CMN 4.893/2021 → Ética aplicada e Código de Ética do BB → Política de Responsabilidade Socioambiental do BB → ASG (Ambiental, Social, Governança)</span>
+
+  <span class="branch">Conhecimentos de Informática</span>
+  <span class="leaves">Windows 10 e Linux SUSE → Pacote Office (Word, Excel, PowerPoint) O365 → Segurança da informação: hardening, antimalware, firewall, controle de USB → Organização de arquivos e pastas → Redes de computadores, internet/intranet → Navegadores, busca na web → E-mail, fóruns, wikis → Redes sociais (Twitter, Facebook, LinkedIn, WhatsApp, YouTube, Instagram, Telegram) → BI e suporte à decisão → Fundamentos de análise de dados → EAD → Ferramentas de trabalho remoto: Teams, Webex, Google Hangout, Drive, Skype</span>
+
+  <span class="branch">Vendas e Negociação</span>
+  <span class="leaves">Estratégia empresarial: análise de mercado, forças competitivas, posicionamento → Segmentação de mercado → Valor percebido pelo cliente → Gestão da experiência do cliente → Características dos serviços (intangibilidade, inseparabilidade, variabilidade, perecibilidade) → Gestão da qualidade em serviços → Técnicas de vendas: pré-abordagem ao pós-venda → Marketing digital: geração de leads, copywriting, gatilhos mentais, inbound marketing → Ética e conduta em vendas → Padrões de atendimento → Canais remotos de venda → Comportamento do consumidor → Resolução CMN 4.949/2021 (relacionamento com o cliente) → Resolução CMN 4.860/2020 (ouvidoria) → Lei 13.146/2015 (Estatuto da PcD) → Lei 8.078/1990 (CDC)</span>
+</div>
+
+<h2 id="s7"><span class="num">7</span>Priorização estratégica</h2>
+<blockquote>Prioridade estimada com base na estrutura do edital, não em estatística histórica de questões anteriores da Cesgranrio para este cargo específico — não há acesso a provas anteriores aplicadas.</blockquote>
+
+<p><span class="badge red">ALTÍSSIMA</span> Vendas e Negociação, Conhecimentos Bancários, Conhecimentos de Informática (juntas = 60 pontos de 100)</p>
+<p><span class="badge orange">ALTA</span> Matemática Financeira, Língua Portuguesa (base para Redação também)</p>
+<p><span class="badge yellow">MÉDIA</span> Matemática, Atualidades do Mercado Financeiro</p>
+<p><span class="badge green">BAIXA relativa</span> Língua Inglesa (menor peso, poucas questões, mas cuidado: nota 0 na disciplina elimina)</p>
+
+<div class="callout">
+<strong>Por que essa ordem faz sentido no seu caso:</strong> Vendas e Negociação e Conhecimentos Bancários são exatamente sua área de atuação profissional — vantagem competitiva real, onde dá para "fechar" pontos rápido. Matemática Financeira também é terreno seu. O ponto de atenção real tende a ser <strong>Informática</strong> (22,5 pontos — pode ter gaps no nível de detalhe cobrado, ex. Linux SUSE) e <strong>Português/Redação</strong>, que exige técnica de escrita formal dissertativa, diferente da escrita comercial já praticada.
+</div>
+
+<h2 id="s8"><span class="num">8</span>Análise da banca (Cesgranrio)</h2>
+<p><strong>Dado observado</strong> (conhecimento geral sobre o estilo Cesgranrio, não estatística): tende a cobrar interpretação direta de texto normativo e de enunciados de caso (principalmente em Vendas/Bancários), com pegadinhas de literalidade em Português e questões objetivas sem grande matematização em Matemática Financeira. Nas disciplinas técnicas, tende a testar conceito + aplicação prática, não teoria pura.</p>
+<p><strong>Inferência estratégica:</strong> como é a banca histórica do BB, o padrão "questão de normativo + questão de aplicação de conceito de mercado" tende a se repetir. Vale treinar questões antigas da própria Cesgranrio para BB (2018, 2021, 2023) mais do que de outras bancas.</p>
+
+<h2 id="s9"><span class="num">9</span>Matriz de prioridade</h2>
+<table>
+<tr><th>Disciplina</th><th class="num">Questões</th><th class="num">Peso</th><th>Dificuldade p/ você (inferência)</th><th>Prioridade</th></tr>
+<tr><td>Vendas e Negociação</td><td class="num">15</td><td class="num">22,5</td><td>Baixa (seu domínio)</td><td><span class="badge red">🔴</span></td></tr>
+<tr><td>Conhecimentos de Informática</td><td class="num">15</td><td class="num">22,5</td><td>Média-Alta (pode ter gaps técnicos)</td><td><span class="badge red">🔴</span></td></tr>
+<tr><td>Conhecimentos Bancários</td><td class="num">10</td><td class="num">15,0</td><td>Baixa (seu domínio)</td><td><span class="badge red">🔴</span></td></tr>
+<tr><td>Língua Portuguesa</td><td class="num">10</td><td class="num">15,0</td><td>Média (gramática formal)</td><td><span class="badge orange">🟠</span></td></tr>
+<tr><td>Matemática Financeira</td><td class="num">5</td><td class="num">7,5</td><td>Baixa (seu domínio)</td><td><span class="badge orange">🟠</span></td></tr>
+<tr><td>Matemática</td><td class="num">5</td><td class="num">7,5</td><td>Média</td><td><span class="badge yellow">🟡</span></td></tr>
+<tr><td>Língua Inglesa</td><td class="num">5</td><td class="num">5,0</td><td>A avaliar</td><td><span class="badge yellow">🟡</span></td></tr>
+<tr><td>Atualidades do Mercado Financeiro</td><td class="num">5</td><td class="num">5,0</td><td>Baixa (seu domínio)</td><td><span class="badge yellow">🟡</span></td></tr>
+<tr><td><strong>Redação</strong></td><td class="num">—</td><td class="num">100 (elim.)</td><td>A avaliar</td><td><span class="badge red">🔴 elim.</span></td></tr>
+</table>
+
+<h2 id="s10"><span class="num">10</span>Custo × benefício</h2>
+<div class="grid-2">
+  <div class="card"><h4>✅ Alto retorno</h4><p>Vendas e Negociação, Conhecimentos Bancários, Matemática Financeira, Atualidades — já domina; falta só alinhar terminologia exata do edital e das leis citadas (ex.: citar "Resolução CMN 4.949/2021" de cabeça).</p></div>
+  <div class="card"><h4>⚖️ Retorno médio</h4><p>Português (peso alto, exige revisão sistemática de regras), Redação (eliminatória, exige técnica específica mesmo escrevendo bem naturalmente).</p></div>
+</div>
+<div class="callout"><strong>Baixo retorno relativo:</strong> ir fundo demais em Matemática pura (poucas questões, baixo peso) ou tentar dominar 100% de Informática teórica (grande volume, retorno pontual) — foco no essencial aplicado, não teoria de sistemas.</div>
+
+<h2 id="s11"><span class="num">11</span>Distribuição de tempo de estudo recomendada</h2>
+<p>Sem saber ainda quantas horas/dia disponíveis nem quantos meses até a prova (edital não saiu), esta é uma distribuição inicial — ajusto o ciclo de blocos quando eu souber sua disponibilidade real.</p>
+<table>
+<tr><th>Disciplina</th><th class="num">% do tempo</th><th>Justificativa</th></tr>
+<tr><td>Conhecimentos de Informática</td><td class="num">20%</td><td>Maior peso onde há menos vantagem natural</td></tr>
+<tr><td>Língua Portuguesa + Redação</td><td class="num">20%</td><td>Peso alto + etapa eliminatória própria</td></tr>
+<tr><td>Conhecimentos Bancários</td><td class="num">15%</td><td>Peso alto, muito normativo específico para memorizar</td></tr>
+<tr><td>Vendas e Negociação</td><td class="num">12%</td><td>Peso alto, mas domínio seu — foco em terminologia/legislação exata</td></tr>
+<tr><td>Matemática Financeira</td><td class="num">10%</td><td>Peso médio, domínio seu — manutenção + questões</td></tr>
+<tr><td>Matemática</td><td class="num">10%</td><td>Peso baixo, mas pode gerar erro bobo — prática de questões</td></tr>
+<tr><td>Atualidades do Mercado Financeiro</td><td class="num">8%</td><td>Peso baixo, domínio seu — leitura leve e constante</td></tr>
+<tr><td>Língua Inglesa</td><td class="num">5%</td><td>Peso baixo — manutenção, já estuda por conta própria</td></tr>
+</table>
+
+<h2 id="s12"><span class="num">12</span>Ciclo de estudos (modelo por blocos, adaptável)</h2>
+<p>Exemplo para ~2h/dia úteis (ajusto se você me disser sua disponibilidade real):</p>
+<ul>
+  <li><strong>Bloco 1 (40 min)</strong> — Informática (teoria + questões)</li>
+  <li><strong>Bloco 2 (30 min)</strong> — Bancários ou Vendas (alternando dias)</li>
+  <li><strong>Bloco 3 (30 min)</strong> — Português (gramática) ou Redação (1x/semana, texto completo)</li>
+  <li><strong>Bloco 4 (20 min)</strong> — Questões mistas de revisão do dia anterior</li>
+</ul>
+
+<h2 id="s13"><span class="num">13</span>Questões</h2>
+<ul>
+  <li>Começar a resolver questões desde a primeira semana de estudo de cada disciplina (não esperar "terminar a teoria").</li>
+  <li>Priorizar questões da própria Cesgranrio, provas anteriores do BB (2018, 2021, 2023) — o <em>estilo</em> de redação da questão é o que mais importa treinar.</li>
+  <li>Aumentar volume de questões (de ~20/dia para 50+/dia) a partir de 60 dias antes da prova.</li>
+</ul>
+
+<h2 id="s14"><span class="num">14</span>Revisão</h2>
+<ul>
+  <li><strong>24h:</strong> revisão rápida do dia anterior (10 min, sem material novo).</li>
+  <li><strong>7 dias:</strong> revisão do conteúdo da semana, com questões.</li>
+  <li><strong>30 dias:</strong> revisão de tudo, focando nos assuntos com mais erros de questões (não nos que "acha" que sabe).</li>
+</ul>
+<div class="callout">Separe sempre: <strong>conteúdo aprendido</strong> (revisão de manutenção) vs. <strong>conteúdo onde há erro de questões</strong> (revisão corretiva, prioritária).</div>
+
+<h2 id="s15"><span class="num">15</span>Simulados</h2>
+<ul>
+  <li>Começar simulados completos (70 questões + redação, 5h) a partir de 45–60 dias antes da prova.</li>
+  <li>Frequência: quinzenal até 30 dias antes, depois semanal.</li>
+  <li>Após cada simulado, classificar cada erro em: desatenção / falta de conhecimento / interpretação / estratégia de tempo.</li>
+</ul>
+
+<h2 id="s16"><span class="num">16</span>Prova discursiva (Redação)</h2>
+<ul>
+  <li>Dissertativo-argumentativo, 100 pontos, corte em 70,0.</li>
+  <li>Critérios: adequação ao tema e ao tipo de texto, coesão, argumentação coerente, domínio da norma-padrão.</li>
+  <li>Zera com: fugir do tema/tipo textual, texto não articulado, identificação do candidato, escrita a lápis.</li>
+</ul>
+<div class="callout"><strong>Estratégia específica:</strong> treinar 1 redação completa por semana desde já, com repertório sobre mercado financeiro/educação financeira/tecnologia bancária — provável origem do tema.</div>
+
+<h2 id="s17"><span class="num">17</span>Riscos do edital</h2>
+<div class="risk">Nota 0 em qualquer disciplina elimina — um "branco" total em Inglês ou Matemática pode tirar do jogo mesmo dominando Vendas e Bancários.</div>
+<div class="risk">Corte de 50% por bloco (Básicos e Específicos separadamente) — não dá para compensar um bloco fraco com o outro forte.</div>
+<div class="risk">Redação eliminatória e corrigida só até o triplo de vagas — a nota da objetiva precisa ser competitiva para chegar à correção.</div>
+<div class="risk">Conteúdo normativo específico (leis, resoluções CMN, circulares) tende a mudar de número/data entre editais — confirmar quando o novo sair.</div>
+
+<h2 id="s18"><span class="num">18</span>O que não estudar em profundidade</h2>
+<ul>
+  <li>Programação/TI avançada (conteúdo do cargo Agente de Tecnologia, não Agente Comercial).</li>
+  <li>Teoria estatística aprofundada — também é do Agente de Tecnologia.</li>
+  <li>Direito bancário aprofundado além do listado — o edital é específico nas leis citadas, não é peça genérica de "direito bancário".</li>
+</ul>
+
+<h2 id="s19"><span class="num">19</span>Reta final (framework, a ajustar quando a data sair)</h2>
+<table>
+<tr><th>Janela</th><th>Foco</th></tr>
+<tr><td>60 dias</td><td>Ainda dá para fechar lacunas de conteúdo; iniciar simulados quinzenais</td></tr>
+<tr><td>30 dias</td><td>Parar conteúdo novo; só revisão + questões + simulado semanal</td></tr>
+<tr><td>15 dias</td><td>Foco total em pontos de erro recorrente + 1 redação por semana</td></tr>
+<tr><td>7 dias</td><td>Revisão leve, sem simulado completo novo, descanso mental</td></tr>
+<tr><td>48h / véspera</td><td>Só revisão de anotações-resumo, sem questão nova, logística da prova</td></tr>
+</table>
+
+<h2 id="s20">🎯 Top prioridades</h2>
+<ol>
+  <li>Vendas e Negociação — ponto forte, mas alinhar à terminologia exata do edital.</li>
+  <li>Conhecimentos Bancários — idem, com atenção às leis/resoluções específicas citadas.</li>
+  <li>Conhecimentos de Informática — maior risco relativo, merece bloco de estudo dedicado.</li>
+  <li>Redação — etapa eliminatória isolada, treinar desde já.</li>
+  <li>Português — revisão gramatical sistemática.</li>
+  <li>Matemática Financeira — manutenção, não aprofundamento.</li>
+  <li>Acompanhar o site do BB e da Cesgranrio para confirmar banca e data do próximo edital.</li>
+</ol>
+
+<h2 id="s21">📅 Próximos passos</h2>
+<ol>
+  <li>Definir horas/dia disponíveis para fechar o ciclo de blocos definitivo.</li>
+  <li>Começar já pelos blocos de Informática e Redação — maior risco relativo.</li>
+  <li>Ativar alerta/monitoramento no site do BB e da Cesgranrio para o próximo edital (aí atualizamos cronograma, vagas e valores reais).</li>
+</ol>
+
+<footer>Documento de referência de estudo — estrutura baseada no Edital nº 01-2022/001 (Cesgranrio/BB), com validade expirada. Atualizar quando o próximo edital for publicado.</footer>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Estudos — Concursos Públicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F5F1E8;
+    --paper-dark: #EDE6D6;
+    --ink: #1E1B16;
+    --ink-soft: #55503F;
+    --navy: #2C3E63;
+    --navy-dark: #202f4d;
+    --brass: #A67C3D;
+    --stamp-red: #8C3B2E;
+    --line: #D8CFC0;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top left, rgba(44,62,99,0.04), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:56px 24px 100px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    margin-bottom:48px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:32px;
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--navy);
+    margin-bottom:18px;
+  }
+
+  .eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--stamp-red);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(32px, 5vw, 48px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+
+  header p{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    max-width:56ch;
+    margin:0;
+  }
+
+  .protocolo{
+    margin-top:20px;
+    display:inline-flex;
+    gap:18px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .protocolo span b{color:var(--ink);}
+
+  /* ---------- Folder / Accordion ---------- */
+  .folders{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .folder{
+    position:relative;
+    background:linear-gradient(180deg, #FBF9F3, var(--paper-dark));
+    border:1px solid var(--line);
+    border-radius:3px;
+    box-shadow: 0 1px 0 rgba(30,27,22,0.03);
+    overflow:visible;
+  }
+
+  /* hanging tab */
+  .folder::before{
+    content: attr(data-tab);
+    position:absolute;
+    top:-13px;
+    left:24px;
+    background:var(--navy);
+    color:var(--paper);
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:5px 12px 6px;
+    border-radius:2px 2px 0 0;
+  }
+
+  .folder-header{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    background:none;
+    border:none;
+    padding:26px 24px 22px;
+    padding-top:30px;
+    cursor:pointer;
+    text-align:left;
+    font-family:inherit;
+    color:inherit;
+  }
+
+  .folder-header:focus-visible{
+    outline:2px solid var(--navy);
+    outline-offset:-2px;
+  }
+
+  .folder-title{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+  }
+
+  .folder-title h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:20px;
+    margin:0;
+    letter-spacing:-.005em;
+  }
+
+  .folder-title .sub{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    display:block;
+    margin-top:3px;
+    font-weight:400;
+  }
+
+  .folder-meta{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-shrink:0;
+  }
+
+  /* wax-stamp badge showing item count */
+  .stamp{
+    width:52px;height:52px;
+    border-radius:50%;
+    border:1.5px dashed var(--brass);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    transform:rotate(-6deg);
+    font-family:var(--font-mono);
+    color:var(--brass);
+    flex-shrink:0;
+  }
+  .stamp b{font-size:16px;line-height:1;color:var(--stamp-red);}
+  .stamp small{font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;margin-top:2px;}
+
+  .chevron{
+    width:22px;height:22px;
+    flex-shrink:0;
+    transition:transform .25s ease;
+    color:var(--ink-soft);
+  }
+  .folder[data-open="true"] .chevron{transform:rotate(180deg);}
+
+  .folder-panel{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .3s ease;
+  }
+  .folder[data-open="true"] .folder-panel{grid-template-rows:1fr;}
+  .folder-panel-inner{overflow:hidden;}
+
+  .subjects{
+    list-style:none;
+    margin:0;
+    padding:0 24px 26px;
+    border-top:1px dashed var(--line);
+    margin-top:2px;
+  }
+
+  .subjects li{
+    border-bottom:1px solid rgba(216,207,192,0.6);
+  }
+  .subjects li:last-child{border-bottom:none;}
+
+  .subjects a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 2px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:14.5px;
+    transition:color .15s ease, padding-left .15s ease;
+  }
+
+  .subjects a:hover, .subjects a:focus-visible{
+    color:var(--navy);
+    padding-left:6px;
+  }
+
+  .subjects .idx{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--brass);
+    width:20px;
+    flex-shrink:0;
+  }
+
+  .subjects .arrow{
+    margin-left:auto;
+    opacity:0;
+    transition:opacity .15s ease;
+    font-family:var(--font-mono);
+    color:var(--navy);
+  }
+  .subjects a:hover .arrow, .subjects a:focus-visible .arrow{opacity:1;}
+
+  /* group divider inside a folder for Conhecimentos Básicos / Específicos */
+  .group-label{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding:16px 2px 6px;
+  }
+  .subjects li.group-label-row{border-bottom:none;}
+
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-family:var(--font-mono);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  @media (max-width:560px){
+    .folder-header{flex-wrap:wrap; padding-top:32px;}
+    .stamp{width:44px;height:44px;}
+    .stamp b{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Dossiê de Estudos</div>
+    <h1>Central de Estudos para Concursos</h1>
+    <p>Organização das matérias por edital. Cada pasta reúne o conteúdo de estudo correspondente — clique para abrir.</p>
+    <div class="protocolo">
+      <span>Editais ativos: <b>3</b></span>
+      <span>Atualizado em: <b>ago/2026</b></span>
+    </div>
+  </header>
+
+  <div class="folders" id="folders">
+
+    <!-- MATÉRIAS BÁSICAS -->
+    <div class="folder" data-tab="Base comum" data-open="false">
+      <button class="folder-header" aria-expanded="false" aria-controls="panel-basicas">
+        <div class="folder-title">
+          <div>
+            <h2>Matérias Básicas para Concursos</h2>
+            <span class="sub">Conteúdo comum à maioria dos editais</span>
+          </div>
+        </div>
+        <div class="folder-meta">
+          <div class="stamp"><b>09</b><small>matérias</small></div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="folder-panel" id="panel-basicas">
+        <div class="folder-panel-inner">
+          <ul class="subjects">
+            <li><a href="materias-basicas/portugues.html"><span class="idx">01</span>Português<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/matematica.html"><span class="idx">02</span>Matemática<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/raciocinio-logico.html"><span class="idx">03</span>Raciocínio Lógico<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/informatica.html"><span class="idx">04</span>Informática<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/ingles.html"><span class="idx">05</span>Inglês<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/direito-administrativo.html"><span class="idx">06</span>Direito Administrativo<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/direito-constitucional.html"><span class="idx">07</span>Direito Constitucional<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/etica.html"><span class="idx">08</span>Ética<span class="arrow">abrir →</span></a></li>
+            <li><a href="materias-basicas/arquivologia.html"><span class="idx">09</span>Arquivologia<span class="arrow">abrir →</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANCO DO BRASIL -->
+    <div class="folder" data-tab="Edital BB" data-open="false">
+      <button class="folder-header" aria-expanded="false" aria-controls="panel-bb">
+        <div class="folder-title">
+          <div>
+            <h2>Banco do Brasil</h2>
+            <span class="sub">Escriturário / Agente Comercial</span>
+          </div>
+        </div>
+        <div class="folder-meta">
+          <div class="stamp"><b>02</b><small>blocos</small></div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="folder-panel" id="panel-bb">
+        <div class="folder-panel-inner">
+          <ul class="subjects">
+            <li><a href="banco-do-brasil/conhecimentos-basicos.html"><span class="idx">01</span>Conhecimentos Básicos<span class="arrow">abrir →</span></a></li>
+            <li><a href="banco-do-brasil/conhecimentos-especificos.html"><span class="idx">02</span>Conhecimentos Específicos<span class="arrow">abrir →</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAIXA -->
+    <div class="folder" data-tab="Edital CEF" data-open="false">
+      <button class="folder-header" aria-expanded="false" aria-controls="panel-caixa">
+        <div class="folder-title">
+          <div>
+            <h2>Caixa Econômica Federal</h2>
+            <span class="sub">Técnico Bancário Novo</span>
+          </div>
+        </div>
+        <div class="folder-meta">
+          <div class="stamp"><b>02</b><small>blocos</small></div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="folder-panel" id="panel-caixa">
+        <div class="folder-panel-inner">
+          <ul class="subjects">
+            <li><a href="caixa/conhecimentos-basicos.html"><span class="idx">01</span>Conhecimentos Básicos<span class="arrow">abrir →</span></a></li>
+            <li><a href="caixa/conhecimentos-especificos.html"><span class="idx">02</span>Conhecimentos Específicos<span class="arrow">abrir →</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSS -->
+    <div class="folder" data-tab="Edital INSS" data-open="false">
+      <button class="folder-header" aria-expanded="false" aria-controls="panel-inss">
+        <div class="folder-title">
+          <div>
+            <h2>INSS</h2>
+            <span class="sub">Instituto Nacional do Seguro Social — Técnico do Seguro Social</span>
+          </div>
+        </div>
+        <div class="folder-meta">
+          <div class="stamp"><b>02</b><small>blocos</small></div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="folder-panel" id="panel-inss">
+        <div class="folder-panel-inner">
+          <ul class="subjects">
+            <li><a href="inss/conhecimentos-basicos.html"><span class="idx">01</span>Conhecimentos Básicos<span class="arrow">abrir →</span></a></li>
+            <li><a href="inss/conhecimentos-especificos.html"><span class="idx">02</span>Conhecimentos Específicos<span class="arrow">abrir →</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>Central de Estudos · uso pessoal</span>
+    <span>Nº protocolo 001/2026</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.folder-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const folder = btn.closest('.folder');
+      const isOpen = folder.getAttribute('data-open') === 'true';
+      folder.setAttribute('data-open', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>
+
+</body>
+</html>

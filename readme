@@ -1,0 +1,31 @@
+# Estudos Concursos
+
+Repositório pessoal de organização de estudos para concursos públicos.
+Acesse a página publicada pelo GitHub Pages para navegar pelas matérias.
+
+## Editais em preparação
+
+- **Matérias Básicas** — conteúdo comum aos editais (Português, Matemática,
+  Raciocínio Lógico, Informática, Inglês, Direito Administrativo,
+  Direito Constitucional, Ética, Arquivologia)
+- **Banco do Brasil** — Escriturário / Agente Comercial
+- **Caixa Econômica Federal** — Técnico Bancário Novo
+- **INSS** — Técnico do Seguro Social
+
+## Estrutura
+
+Cada edital tem sua própria pasta, com um arquivo `.html` por matéria ou
+bloco (Conhecimentos Básicos / Conhecimentos Específicos). O `index.html`
+na raiz é o painel de navegação.
+
+## Como acessar
+
+Publicado via GitHub Pages em:
+`https://fernandodoc.github.io/estudos-concursos/`
+
+## Como adicionar um novo edital
+
+1. Criar uma pasta na raiz com o nome do concurso (ex: `receita-federal/`)
+2. Adicionar os arquivos `.html` de conteúdo dentro dela
+3. Incluir um novo bloco (`.folder`) no `index.html`, seguindo o mesmo
+   padrão dos existentes

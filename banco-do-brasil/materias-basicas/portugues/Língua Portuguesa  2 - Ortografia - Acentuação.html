@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acentuação Gráfica | Concurso BB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6F0;
+    --ink:#2A1F2E;
+    --sub:#6B5F6A;
+    --line:#E8DEDF;
+    --wave:#1E7F82;
+    --wave-deep:#155F61;
+    --wave-soft:#DFEFEE;
+    --accent-mark:#A8442E;
+    --accent-soft:#F6E3DD;
+    --red:#B03A2E;
+    --red-soft:#F8E9E6;
+    --green:#2E7D4F;
+    --green-soft:#E5F1E9;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.65; padding-bottom:80px;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  .hero{padding:48px 24px 0;}
+  .hero-inner{max-width:880px; margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--wave-deep); font-weight:600;
+  }
+  h1{
+    font-family:'Literata', serif; font-weight:700;
+    font-size:clamp(28px,4.4vw,44px); letter-spacing:-0.01em;
+    margin:12px 0 8px; color:var(--ink);
+  }
+  .hero p.sub{color:var(--sub); font-size:16px; max-width:620px; margin:0 0 26px;}
+
+  /* signature: balança do princípio da economia */
+  .scale-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:24px 28px 20px; margin-bottom:-30px; position:relative; z-index:2;
+    box-shadow:0 10px 30px rgba(60,30,40,0.06);
+  }
+  .scale-title{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--sub); text-align:center; margin-bottom:14px;}
+  .scale{display:flex; align-items:flex-end; justify-content:center; gap:0; position:relative;}
+  .scale-arm{position:absolute; top:14px; left:10%; right:10%; height:2px; background:var(--ink);}
+  .scale-fulcrum{width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:22px solid var(--ink); margin:0 auto;}
+  .scale-pan{width:42%; text-align:center;}
+  .scale-pan .box{
+    border-radius:10px; padding:14px 10px; margin-top:6px;
+  }
+  .scale-pan.minor .box{background:var(--accent-soft); border:2px solid var(--accent-mark);}
+  .scale-pan.major .box{background:var(--wave-soft); border:2px solid var(--wave);}
+  .scale-pan .label{font-family:'Literata',serif; font-weight:700; font-size:14px;}
+  .scale-pan.minor .label{color:var(--accent-mark);}
+  .scale-pan.major .label{color:var(--wave-deep);}
+  .scale-pan .sub2{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--sub); margin-top:4px;}
+
+  section.card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:26px 28px; margin-top:22px;
+  }
+  .card.first{margin-top:48px; padding-top:36px;}
+  .card-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .card-icon{
+    width:34px; height:34px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center;
+    background:var(--wave-soft); color:var(--wave-deep); font-size:16px; font-weight:700; font-family:'Literata',serif;
+  }
+  .card-head h2{font-family:'Literata', serif; font-weight:700; font-size:21px; margin:0; color:var(--ink);}
+  .card p{margin:10px 0;}
+  .card ul{margin:10px 0; padding-left:20px;}
+  .card li{margin:6px 0;}
+  strong.term{color:var(--wave-deep); font-weight:600;}
+  strong.term2{color:var(--accent-mark); font-weight:600;}
+
+  /* encontros vocálicos — vowel grouping visual */
+  .vowel-grid{display:flex; flex-wrap:wrap; gap:14px; margin:16px 0;}
+  .vowel-card{flex:1; min-width:170px; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:16px 14px; text-align:center;}
+  .vowel-card .name{font-family:'Literata',serif; font-weight:700; font-size:15px; color:var(--wave-deep);}
+  .vowel-group{display:flex; align-items:center; justify-content:center; gap:4px; margin:14px 0 8px;}
+  .vowel-dot{
+    width:30px; height:30px; border-radius:50%; background:var(--wave); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Literata',serif; font-weight:700; font-size:14px;
+  }
+  .vowel-bracket{
+    border-bottom:2px solid var(--wave-deep); border-left:2px solid var(--wave-deep); border-right:2px solid var(--wave-deep);
+    border-radius:0 0 8px 8px; height:10px; margin:0 2px;
+  }
+  .vowel-gap{width:14px;}
+  .vowel-card .word{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--sub); margin-top:6px;}
+  .vowel-card .desc{font-size:12px; color:var(--sub); margin-top:8px;}
+
+  /* rule cards */
+  .rule-card{
+    display:flex; gap:16px; align-items:flex-start; background:var(--paper); border:1px solid var(--line);
+    border-radius:10px; padding:16px 17px; margin:14px 0;
+  }
+  .rule-num{
+    font-family:'Literata',serif; font-weight:700; font-size:20px; color:#fff; background:var(--wave);
+    width:34px; height:34px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center;
+  }
+  .rule-body .rule-title{font-family:'Literata',serif; font-weight:700; font-size:15.5px; color:var(--wave-deep); margin-bottom:4px;}
+  .rule-body .rule-desc{font-size:13.5px; color:var(--sub);}
+  .rule-body .rule-ex{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink); margin-top:6px;}
+  .rule-body .rule-ex .acc{color:var(--accent-mark); font-weight:700;}
+
+  /* accent types */
+  .accent-grid{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0;}
+  .accent-card{flex:1; min-width:130px; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 12px; text-align:center;}
+  .accent-card.no{opacity:0.7; border-style:dashed;}
+  .accent-card .glyph{font-family:'Literata',serif; font-size:28px; font-weight:700; color:var(--accent-mark);}
+  .accent-card.no .glyph{color:var(--sub); text-decoration:line-through;}
+  .accent-card .name{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--sub); margin-top:6px;}
+  .accent-card .desc{font-size:11.5px; color:var(--sub); margin-top:4px;}
+
+  table.cmp{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+  table.cmp th{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.04em;
+    text-align:left; padding:10px 12px; border-bottom:2px solid var(--ink); color:var(--sub);
+  }
+  table.cmp td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp td.wave-col{color:var(--wave-deep); font-weight:600;}
+  table.cmp td.mark-col{color:var(--accent-mark); font-weight:600;}
+
+  /* terminações chips */
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:13px; background:var(--accent-soft); color:var(--accent-mark); padding:6px 13px; border-radius:20px; font-weight:700;}
+
+  /* case study */
+  .case{background:var(--paper); border:1px dashed #D9C3BE; border-radius:10px; padding:14px 16px; margin:10px 0; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+  .case .word{font-family:'Literata',serif; font-weight:600; font-size:15px;}
+  .case .word .acc{color:var(--accent-mark);}
+  .case .verdict{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; padding:3px 10px; border-radius:20px; flex:none;}
+  .case .verdict.yes{background:var(--accent-soft); color:var(--accent-mark);}
+  .case .verdict.no{background:var(--wave-soft); color:var(--wave-deep);}
+
+  .flag{
+    display:flex; gap:12px; align-items:flex-start;
+    background:var(--accent-soft); border:1px solid #E3C1B4; border-left:4px solid var(--accent-mark);
+    border-radius:0 10px 10px 0; padding:13px 16px; margin:16px 0;
+  }
+  .flag .mark{font-family:'Literata',serif; font-weight:700; color:var(--accent-mark); font-size:13px; flex:none;}
+  .flag .txt{font-size:14px; color:var(--ink);}
+  .flag .txt em{font-style:normal; font-weight:600; color:var(--wave-deep);}
+
+  .pitfall{
+    display:flex; gap:12px; align-items:flex-start; background:var(--red-soft); border:1px solid #EFC5BC; border-radius:10px;
+    padding:12px 15px; margin:12px 0;
+  }
+  .pitfall .x{
+    width:22px; height:22px; border-radius:50%; background:var(--red); color:#fff; flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-top:1px;
+  }
+  .pitfall .wrong{color:var(--red); text-decoration:line-through; font-weight:500;}
+  .pitfall .correct{color:var(--green); font-weight:600;}
+
+  .review-grid{display:flex; flex-direction:column; gap:8px; margin:16px 0;}
+  .review-row{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14px;
+  }
+  .verdict{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; padding:3px 9px; border-radius:20px; flex:none;}
+  .verdict.err{background:var(--red-soft); color:var(--red);}
+  .verdict.ok{background:var(--green-soft); color:var(--green);}
+
+  .footer{
+    margin-top:50px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--sub);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ============ POCKET REVIEW ============ */
+  .pocket-divider{max-width:880px; margin:60px auto 0; padding:0 24px; display:flex; align-items:center; gap:14px;}
+  .pocket-divider .line{flex:1; height:1px; background:var(--line);}
+  .pocket-divider span{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub);}
+
+  .pocket-wrap{max-width:640px; margin:24px auto 0; padding:0 24px;}
+  .pocket-card{background:#fff; border:2px solid var(--wave-deep); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(20,60,60,0.10);}
+  .pocket-head{background:var(--wave-deep); color:#EAF6F5; padding:18px 22px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+  .pocket-head .eb{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#A8D8D5;}
+  .pocket-head h3{font-family:'Literata',serif; font-weight:700; font-size:19px; margin:3px 0 0;}
+  .pocket-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:20px; white-space:nowrap;}
+
+  .pocket-body{padding:18px 22px 22px;}
+  .p-sec{margin-bottom:16px;}
+  .p-sec:last-child{margin-bottom:0;}
+  .p-sec-title{
+    font-family:'Literata',serif; font-weight:700; font-size:12.5px; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--wave-deep); margin:0 0 7px; display:flex; align-items:center; gap:7px;
+  }
+  .p-sec-title::before{content:""; width:14px; height:2px; background:var(--accent-mark); flex:none;}
+
+  table.mini{width:100%; border-collapse:collapse; font-size:12.5px;}
+  table.mini th{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:9.5px; text-transform:uppercase; background:var(--wave-soft); color:var(--wave-deep); text-align:left; padding:6px 8px;}
+  table.mini td{padding:6px 8px; border-bottom:1px solid var(--line);}
+  table.mini tr:last-child td{border-bottom:none;}
+
+  .pocket-chips{display:flex; flex-wrap:wrap; gap:5px;}
+  .pocket-chips span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:var(--accent-soft); color:var(--accent-mark); padding:3px 9px; border-radius:14px; font-weight:700;}
+
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .checklist li{display:flex; gap:9px; align-items:flex-start; font-size:12.5px;}
+  .checklist .box{width:15px; height:15px; border:1.5px solid var(--wave); border-radius:3px; flex:none; margin-top:2px;}
+
+  .pocket-footer{background:var(--paper); border-top:1px dashed var(--line); padding:9px 22px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--sub); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Painel de Revisão · Língua Portuguesa — Aula 02</div>
+    <h1>Ortografia — Acentuação Gráfica</h1>
+    <p class="sub">As três regras centrais, o princípio da economia e a diferença entre paroxítona terminada em ditongo e "proparoxítona eventual".</p>
+
+    <div class="scale-card">
+      <div class="scale-title">Princípio da economia — marca-se o grupo menor</div>
+      <div class="scale">
+        <div class="scale-pan minor">
+          <div class="box"><div class="label">Proparoxítonas</div><div class="sub2">minoria (~5%)</div></div>
+        </div>
+        <div class="scale-pan major">
+          <div class="box"><div class="label">Paroxítonas</div><div class="sub2">maioria do léxico</div></div>
+        </div>
+      </div>
+      <div class="scale-fulcrum" style="margin-top:-4px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="card first">
+    <div class="card-head"><div class="card-icon">´</div><h2>Tipos de acento — nem tudo que "tem til" é acento</h2></div>
+    <div class="accent-grid">
+      <div class="accent-card"><div class="glyph">´</div><div class="name">Agudo</div><div class="desc">Som aberto — cafés</div></div>
+      <div class="accent-card"><div class="glyph">ˆ</div><div class="name">Circunflexo</div><div class="desc">Som fechado</div></div>
+      <div class="accent-card"><div class="glyph">`</div><div class="name">Grave</div><div class="desc">Crase (a + a) — não marca tonicidade</div></div>
+      <div class="accent-card no"><div class="glyph">~</div><div class="name">Til</div><div class="desc">Nasalização — NÃO é acento</div></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Til é um tipo de acento gráfico</span> — <span class="correct">Errado. As regras de acentuação incidem sobre agudo e circunflexo; o grave marca crase.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">◡◡</div><h2>Encontros vocálicos — como as vogais se agrupam</h2></div>
+    <p>Antes de aplicar qualquer regra de acentuação, é preciso saber <strong class="term">como as vogais se organizam em sílabas</strong>. É isso que decide se uma palavra é paroxítona "normal" ou paroxítona terminada em ditongo — a distinção que aparece mais adiante nesta aula.</p>
+    <div class="vowel-grid">
+      <div class="vowel-card">
+        <div class="name">Ditongo</div>
+        <div class="vowel-group">
+          <div class="vowel-dot">é</div><div class="vowel-dot">ri</div>
+        </div>
+        <div class="vowel-bracket" style="width:68px; margin:0 auto;"></div>
+        <div class="word">sé-rie</div>
+        <div class="desc">Duas vogais na <strong class="term">mesma sílaba</strong></div>
+      </div>
+      <div class="vowel-card">
+        <div class="name">Tritongo</div>
+        <div class="vowel-group">
+          <div class="vowel-dot">u</div><div class="vowel-dot">gu</div><div class="vowel-dot">ai</div>
+        </div>
+        <div class="vowel-bracket" style="width:104px; margin:0 auto;"></div>
+        <div class="word">Pa-ra-guai</div>
+        <div class="desc"><strong class="term">Três vogais</strong> na mesma sílaba</div>
+      </div>
+      <div class="vowel-card">
+        <div class="name">Hiato</div>
+        <div class="vowel-group">
+          <div class="vowel-dot">a</div><div class="vowel-gap"></div><div class="vowel-dot">í</div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:14px;">
+          <div class="vowel-bracket" style="width:30px;"></div><div class="vowel-bracket" style="width:30px;"></div>
+        </div>
+        <div class="word">sa-í-da</div>
+        <div class="desc">Vogais juntas na escrita, mas <strong class="term2">separadas</strong> na sílaba</div>
+      </div>
+    </div>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">Regra de ouro da divisão silábica: <em>"não existe sílaba sem vogal"</em>. Por isso "bíceps" se separa em <strong>bí-ceps</strong>, nunca "bíc-ps".</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">①②③</div><h2>As três regras centrais</h2></div>
+    <div class="rule-card">
+      <div class="rule-num">1</div>
+      <div class="rule-body">
+        <div class="rule-title">Toda proparoxítona é acentuada</div>
+        <div class="rule-desc">Sem exceção — 100% das proparoxítonas levam acento.</div>
+        <div class="rule-ex">l<span class="acc">â</span>mpada · l<span class="acc">u</span>n<span class="acc">á</span>tica · t<span class="acc">ó</span>rax · b<span class="acc">í</span>ceps · <span class="acc">á</span>lbum</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">2</div>
+      <div class="rule-body">
+        <div class="rule-title">Oxítonas terminadas em A, E, O, EM, ENS (± S) → acentuam-se</div>
+        <div class="rule-desc">Plural não muda a regra.</div>
+        <div class="rule-ex">Paran<span class="acc">á</span> · caf<span class="acc">é</span>s · mocot<span class="acc">ó</span> · diz<span class="acc">e</span>m</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">3</div>
+      <div class="rule-body">
+        <div class="rule-title">Paroxítonas terminadas nas mesmas sequências → NÃO se acentuam</div>
+        <div class="rule-desc">Se a paroxítona terminar em outra sequência (inclusive ditongo) → acentua-se.</div>
+        <div class="rule-ex">ataque · anos · item <span style="color:var(--sub);">(sem acento)</span> — car<span class="acc">á</span>ter · am<span class="acc">á</span>vel · t<span class="acc">á</span>xi <span style="color:var(--sub);">(com acento)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">A·E·O</div><h2>Terminações-chave</h2></div>
+    <div class="chips">
+      <span class="chip">A</span><span class="chip">E</span><span class="chip">O</span><span class="chip">EM</span><span class="chip">ENS</span>
+    </div>
+    <p style="font-size:14px; color:var(--sub);">Sempre "seguidas ou não de S" — servem para comparar oxítonas × paroxítonas sob o princípio da economia.</p>
+    <table class="cmp">
+      <tr><th>Terminação A/E/O/EM/ENS</th><th>Oxítona</th><th>Paroxítona</th></tr>
+      <tr><td>Efeito</td><td class="mark-col">Acentua</td><td class="wave-col">Não acentua</td></tr>
+      <tr><td>Grupo (economia)</td><td class="mark-col">Menor → marca-se</td><td class="wave-col">Maior → não se marca</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">◐</div><h2>Paroxítona terminada em ditongo × "Proparoxítona eventual"</h2></div>
+    <table class="cmp">
+      <tr><th>Aspecto</th><th>Paroxítona term. em ditongo</th><th>Proparoxítona eventual</th></tr>
+      <tr><td>Divisão</td><td class="wave-col">sé-rie · bac-té-ria · me-sá-rio</td><td class="mark-col">sé-ri-e · bac-té-ri-a</td></tr>
+      <tr><td>Uso em prova</td><td class="wave-col"><strong>Regra prioritária</strong></td><td class="mark-col">Só se a banca disser "duas regras distintas"</td></tr>
+    </table>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">Padrão: trate <em>mesário, série, bactéria, necessário</em> como <strong>paroxítonas terminadas em ditongo</strong> — sempre acentuadas. Só admita a leitura alternativa se o enunciado autorizar.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✎</div><h2>Casos resolvidos</h2></div>
+    <div class="case"><span class="word">P<span class="acc">a</span>ran<span class="acc">á</span></span><span class="verdict yes">Oxítona · acentua</span></div>
+    <div class="case"><span class="word">mar</span><span class="verdict no">Oxítona · não acentua</span></div>
+    <div class="case"><span class="word">it<span style="color:var(--wave-deep);">e</span>m</span><span class="verdict no">Paroxítona · não acentua</span></div>
+    <div class="case"><span class="word">car<span class="acc">á</span>ter</span><span class="verdict yes">Paroxítona (fora do padrão) · acentua</span></div>
+    <div class="case"><span class="word">mes<span class="acc">á</span>rio</span><span class="verdict yes">Paroxítona term. em ditongo · acentua</span></div>
+    <div class="case"><span class="word"><span class="acc">ó</span>rf<span style="color:var(--sub);">ã</span></span><span class="verdict yes">Um só acento — til não conta</span></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">Ø</div><h2>Pegadinhas mais comuns</h2></div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Plural muda a regra de acentuação</span> — <span class="correct">Errado. "Seguidas ou não de S" — cafés e café seguem a mesma regra.</span></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">"Proparoxítona eventual" vale sempre que houver ditongo</span> — <span class="correct">Errado. Só quando a banca afirmar "duas regras distintas".</span></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Separar "bíceps" como "bíc-ps"</span> — <span class="correct">Errado. Não existe sílaba sem vogal.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✓</div><h2>Revisão relâmpago — certo ou errado</h2></div>
+    <div class="review-grid">
+      <div class="review-row"><span>Toda proparoxítona é acentuada, sem exceção</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>Oxítonas terminadas em A/E/O/EM/ENS não se acentuam</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>Paroxítonas terminadas em A/E/O/EM/ENS se acentuam</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>"Cafés" e "café" seguem a mesma regra de acentuação</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>Til é um acento gráfico como o agudo e o circunflexo</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>"Mesário" é tratado, por padrão, como paroxítona terminada em ditongo</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>"Proparoxítona eventual" deve ser usada sempre que houver ditongo</span><span class="verdict err">Errado</span></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Fonte: material de estudo — Acentuação Gráfica</span>
+    <span>Preparado para revisão · Concurso Banco do Brasil</span>
+  </div>
+
+</div>
+
+<!-- ============ REVISÃO DE BOLSO ============ -->
+<div class="pocket-divider"><div class="line"></div><span>Revisão de bolso</span><div class="line"></div></div>
+
+<div class="pocket-wrap">
+  <div class="pocket-card">
+
+    <div class="pocket-head">
+      <div>
+        <div class="eb">Ficha de Bolso</div>
+        <h3>Acentuação Gráfica</h3>
+      </div>
+      <div class="pocket-tag">Língua Portuguesa</div>
+    </div>
+
+    <div class="pocket-body">
+
+      <div class="p-sec">
+        <div class="p-sec-title">As três regras</div>
+        <table class="mini">
+          <tr><th>Regra</th><th>O que diz</th></tr>
+          <tr><td>1</td><td>Proparoxítona → sempre acentua</td></tr>
+          <tr><td>2</td><td>Oxítona em A/E/O/EM/ENS (±S) → acentua</td></tr>
+          <tr><td>3</td><td>Paroxítona em A/E/O/EM/ENS (±S) → NÃO acentua</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Encontros vocálicos</div>
+        <table class="mini">
+          <tr><th>Tipo</th><th>O que é</th></tr>
+          <tr><td>Ditongo</td><td>2 vogais na mesma sílaba (sé-rie)</td></tr>
+          <tr><td>Tritongo</td><td>3 vogais na mesma sílaba (Pa-ra-guai)</td></tr>
+          <tr><td>Hiato</td><td>Vogais separadas em sílabas (sa-í-da)</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Tipos de acento</div>
+        <div class="pocket-chips">
+          <span>´ agudo</span><span>ˆ circunflexo</span><span>` grave = crase</span><span>~ til ≠ acento</span>
+        </div>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Paroxítona em ditongo</div>
+        <p style="font-size:12.5px; color:var(--sub); margin:0;">Padrão: <strong style="color:var(--wave-deep);">acentua</strong> (mesário, série, bactéria). "Proparoxítona eventual" só se a banca disser "duas regras distintas".</p>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Exemplos-chave para revisar</div>
+        <div class="pocket-chips">
+          <span>lâmpada</span><span>tórax</span><span>álbum</span><span>Paraná</span><span>cafés</span>
+          <span>ataque</span><span>item</span><span>caráter</span><span>amável</span><span>órfã</span>
+        </div>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Checklist final</div>
+        <ul class="checklist">
+          <li><span class="box"></span>Diferencio ditongo, tritongo e hiato pela contagem de sílabas?</li>
+          <li><span class="box"></span>Classifico oxítona/paroxítona/proparoxítona rapidamente?</li>
+          <li><span class="box"></span>Gravei: toda proparoxítona é acentuada?</li>
+          <li><span class="box"></span>Memorizei as terminações A/E/O/EM/ENS para oxítonas (acentua) e paroxítonas (não acentua)?</li>
+          <li><span class="box"></span>Lembro que paroxítonas terminadas em ditongo são acentuadas?</li>
+          <li><span class="box"></span>Sei que til não é acento e que o grave marca crase, não tonicidade?</li>
+          <li><span class="box"></span>Só aceito "proparoxítona eventual" se o enunciado falar em "duas regras distintas"?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pocket-footer">
+      <span>Revisão de bolso · Acentuação Gráfica</span>
+      <span>Concurso Banco do Brasil</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

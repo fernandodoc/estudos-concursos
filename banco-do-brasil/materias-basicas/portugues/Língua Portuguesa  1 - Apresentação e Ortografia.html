@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apresentação e Ortografia | Concurso BB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6F0;
+    --ink:#2A1F2E;
+    --sub:#6B5F6A;
+    --line:#E8DEDF;
+    --wave:#1E7F82;
+    --wave-deep:#155F61;
+    --wave-soft:#DFEFEE;
+    --accent-mark:#A8442E;
+    --accent-soft:#F6E3DD;
+    --red:#B03A2E;
+    --red-soft:#F8E9E6;
+    --green:#2E7D4F;
+    --green-soft:#E5F1E9;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.65; padding-bottom:80px;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  .hero{padding:48px 24px 0;}
+  .hero-inner{max-width:880px; margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--wave-deep); font-weight:600;
+  }
+  h1{
+    font-family:'Literata', serif; font-weight:700;
+    font-size:clamp(28px,4.4vw,44px); letter-spacing:-0.01em;
+    margin:12px 0 8px; color:var(--ink);
+  }
+  .hero p.sub{color:var(--sub); font-size:16px; max-width:620px; margin:0 0 26px;}
+
+  /* signature: waveform card in hero */
+  .wave-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:26px 28px; margin-bottom:-30px; position:relative; z-index:2;
+    box-shadow:0 10px 30px rgba(60,30,40,0.06);
+  }
+  .wave-word{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--sub); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px;}
+  .waveform{display:flex; align-items:flex-end; gap:10px; height:70px;}
+  .wf-syl{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:6px;}
+  .wf-bar{width:100%; max-width:52px; border-radius:6px 6px 2px 2px; background:var(--wave-soft);}
+  .wf-bar.tonic{background:var(--wave);}
+  .wf-label{font-family:'Literata',serif; font-weight:600; font-size:15px; color:var(--sub);}
+  .wf-label.tonic{color:var(--wave-deep); font-weight:700;}
+
+  section.card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:26px 28px; margin-top:22px;
+  }
+  .card.first{margin-top:48px; padding-top:36px;}
+  .card-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .card-icon{
+    width:34px; height:34px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center;
+    background:var(--wave-soft); color:var(--wave-deep); font-size:16px; font-weight:700; font-family:'Literata',serif;
+  }
+  .card-head h2{font-family:'Literata', serif; font-weight:700; font-size:21px; margin:0; color:var(--ink);}
+  .card p{margin:10px 0;}
+  .card ul{margin:10px 0; padding-left:20px;}
+  .card li{margin:6px 0;}
+  strong.term{color:var(--wave-deep); font-weight:600;}
+  strong.term2{color:var(--accent-mark); font-weight:600;}
+
+  /* tonicity classification mini-waveforms */
+  .tonic-grid{display:flex; gap:14px; margin:16px 0; flex-wrap:wrap;}
+  .tonic-card{flex:1; min-width:150px; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 12px; text-align:center;}
+  .tonic-card .name{font-family:'Literata',serif; font-weight:700; font-size:14.5px; color:var(--wave-deep);}
+  .tonic-card .mini-wf{display:flex; align-items:flex-end; gap:4px; height:36px; margin:10px 0 6px; justify-content:center;}
+  .tonic-card .mini-bar{width:12px; border-radius:3px 3px 1px 1px; background:var(--wave-soft);}
+  .tonic-card .mini-bar.tonic{background:var(--wave);}
+  .tonic-card .ex{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--sub);}
+  @media (max-width:600px){ .tonic-grid{flex-direction:column;} }
+
+  /* tonicidade x acentuação comparison */
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+  .pair-box{border-radius:12px; padding:16px 17px;}
+  .pair-box.wave{background:var(--wave-soft); border:1px solid #B9D9D7;}
+  .pair-box.mark{background:var(--accent-soft); border:1px solid #E3C1B4;}
+  .pair-box .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;}
+  .pair-box.wave .tag{color:var(--wave-deep);}
+  .pair-box.mark .tag{color:var(--accent-mark);}
+  .pair-box .name{font-family:'Literata',serif; font-weight:700; font-size:16px; margin:4px 0 6px;}
+  .pair-box .desc{font-size:13px; color:var(--sub);}
+  @media (max-width:600px){ .pair{grid-template-columns:1fr;} }
+
+  table.cmp{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+  table.cmp th{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.04em;
+    text-align:left; padding:10px 12px; border-bottom:2px solid var(--ink); color:var(--sub);
+  }
+  table.cmp td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp td.wave-col{color:var(--wave-deep); font-weight:600;}
+  table.cmp td.mark-col{color:var(--accent-mark); font-weight:600;}
+
+  /* case study with waveform */
+  .case{background:var(--paper); border:1px dashed #D9C3BE; border-radius:10px; padding:16px 17px; margin:14px 0;}
+  .case-title{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--sub); border-bottom:1px dashed var(--line); padding-bottom:8px; margin-bottom:10px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .case-title .verdict{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; padding:3px 9px; border-radius:20px; background:var(--wave-soft); color:var(--wave-deep);}
+  .case .reason{font-size:13px; color:var(--sub); margin-top:8px;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--wave-soft); color:var(--wave-deep); padding:5px 11px; border-radius:20px; font-weight:600;}
+
+  /* module sequence flow */
+  .seq-flow{display:flex; align-items:center; gap:0; margin:16px 0; flex-wrap:wrap;}
+  .seq-node{background:var(--paper); border:1.5px solid var(--wave); border-radius:8px; padding:8px 12px; font-size:12px; font-weight:600; color:var(--wave-deep); text-align:center; flex:1; min-width:90px;}
+  .seq-node.hi{background:var(--accent-soft); border-color:var(--accent-mark); color:var(--accent-mark);}
+  .seq-arrow{padding:0 6px; color:var(--sub); font-family:'IBM Plex Mono',monospace;}
+  @media (max-width:700px){ .seq-flow{flex-direction:column;} .seq-arrow{transform:rotate(90deg); padding:2px 0;} }
+
+  .flag{
+    display:flex; gap:12px; align-items:flex-start;
+    background:var(--accent-soft); border:1px solid #E3C1B4; border-left:4px solid var(--accent-mark);
+    border-radius:0 10px 10px 0; padding:13px 16px; margin:16px 0;
+  }
+  .flag .mark{font-family:'Literata',serif; font-weight:700; color:var(--accent-mark); font-size:13px; flex:none;}
+  .flag .txt{font-size:14px; color:var(--ink);}
+  .flag .txt em{font-style:normal; font-weight:600; color:var(--wave-deep);}
+
+  .pitfall{
+    display:flex; gap:12px; align-items:flex-start; background:var(--red-soft); border:1px solid #EFC5BC; border-radius:10px;
+    padding:12px 15px; margin:12px 0;
+  }
+  .pitfall .x{
+    width:22px; height:22px; border-radius:50%; background:var(--red); color:#fff; flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-top:1px;
+  }
+  .pitfall .wrong{color:var(--red); text-decoration:line-through; font-weight:500;}
+  .pitfall .correct{color:var(--green); font-weight:600;}
+
+  .review-grid{display:flex; flex-direction:column; gap:8px; margin:16px 0;}
+  .review-row{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14px;
+  }
+  .verdict{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; padding:3px 9px; border-radius:20px; flex:none;}
+  .verdict.err{background:var(--red-soft); color:var(--red);}
+  .verdict.ok{background:var(--green-soft); color:var(--green);}
+
+  .footer{
+    margin-top:50px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--sub);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ============ POCKET REVIEW ============ */
+  .pocket-divider{max-width:880px; margin:60px auto 0; padding:0 24px; display:flex; align-items:center; gap:14px;}
+  .pocket-divider .line{flex:1; height:1px; background:var(--line);}
+  .pocket-divider span{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub);}
+
+  .pocket-wrap{max-width:640px; margin:24px auto 0; padding:0 24px;}
+  .pocket-card{background:#fff; border:2px solid var(--wave-deep); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(20,60,60,0.10);}
+  .pocket-head{background:var(--wave-deep); color:#EAF6F5; padding:18px 22px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+  .pocket-head .eb{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#A8D8D5;}
+  .pocket-head h3{font-family:'Literata',serif; font-weight:700; font-size:19px; margin:3px 0 0;}
+  .pocket-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:20px; white-space:nowrap;}
+
+  .pocket-body{padding:18px 22px 22px;}
+  .p-sec{margin-bottom:16px;}
+  .p-sec:last-child{margin-bottom:0;}
+  .p-sec-title{
+    font-family:'Literata',serif; font-weight:700; font-size:12.5px; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--wave-deep); margin:0 0 7px; display:flex; align-items:center; gap:7px;
+  }
+  .p-sec-title::before{content:""; width:14px; height:2px; background:var(--accent-mark); flex:none;}
+
+  table.mini{width:100%; border-collapse:collapse; font-size:12.5px;}
+  table.mini th{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:9.5px; text-transform:uppercase; background:var(--wave-soft); color:var(--wave-deep); text-align:left; padding:6px 8px;}
+  table.mini td{padding:6px 8px; border-bottom:1px solid var(--line);}
+  table.mini tr:last-child td{border-bottom:none;}
+
+  .pocket-chips{display:flex; flex-wrap:wrap; gap:5px;}
+  .pocket-chips span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:var(--wave-soft); color:var(--wave-deep); padding:3px 9px; border-radius:14px; font-weight:600;}
+
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .checklist li{display:flex; gap:9px; align-items:flex-start; font-size:12.5px;}
+  .checklist .box{width:15px; height:15px; border:1.5px solid var(--wave); border-radius:3px; flex:none; margin-top:2px;}
+
+  .pocket-footer{background:var(--paper); border-top:1px dashed var(--line); padding:9px 22px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--sub); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Painel de Revisão · Língua Portuguesa — Aula 01</div>
+    <h1>Apresentação e Ortografia</h1>
+    <p class="sub">Tonicidade × acentuação gráfica — a distinção que mais confunde na prova — mais o Novo Acordo Ortográfico e a estratégia de estudo por banca.</p>
+
+    <div class="wave-card">
+      <div class="wave-word">res·pon·sá·vel</div>
+      <div class="waveform">
+        <div class="wf-syl"><div class="wf-bar" style="height:35%;"></div><div class="wf-label">res</div></div>
+        <div class="wf-syl"><div class="wf-bar" style="height:45%;"></div><div class="wf-label">pon</div></div>
+        <div class="wf-syl"><div class="wf-bar tonic" style="height:100%;"></div><div class="wf-label tonic">SÁ</div></div>
+        <div class="wf-syl"><div class="wf-bar" style="height:30%;"></div><div class="wf-label">vel</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="card first">
+    <div class="card-head"><div class="card-icon">§</div><h2>O curso e a lógica dos módulos</h2></div>
+    <p><strong class="term">Ortografia</strong>: conjunto de regras da escrita correta — emprego das letras, acentuação gráfica e hífen. Vem logo no início do curso porque é o que <strong class="term">mais cai</strong> em prova, mesmo a sequência teórica da língua sendo fonética → morfologia → sintaxe → semântica.</p>
+    <div class="seq-flow">
+      <div class="seq-node hi">Ortografia</div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-node">Morfologia</div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-node">Sintaxe simples</div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-node">Período composto</div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-node">...</div>
+    </div>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">Entre os módulos 2 e 9, <em>evite pular</em> — o domínio do anterior facilita o seguinte (morfologia → sintaxe → período composto → concordância).</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">🔊</div><h2>Tonicidade — onde mora a sílaba forte</h2></div>
+    <p><strong class="term">Tonicidade</strong>: posição da sílaba tônica (a mais forte). As demais são átonas — inclusive monossílabos como <em>de, em</em> e pronomes oblíquos como <em>me, te, se</em>, que não têm tônica própria.</p>
+    <div class="tonic-grid">
+      <div class="tonic-card">
+        <div class="name">Oxítona</div>
+        <div class="mini-wf"><div class="mini-bar" style="height:35%;"></div><div class="mini-bar tonic" style="height:100%;"></div></div>
+        <div class="ex">tônica na última</div>
+      </div>
+      <div class="tonic-card">
+        <div class="name">Paroxítona</div>
+        <div class="mini-wf"><div class="mini-bar" style="height:35%;"></div><div class="mini-bar tonic" style="height:100%;"></div><div class="mini-bar" style="height:30%;"></div></div>
+        <div class="ex">tônica na penúltima</div>
+      </div>
+      <div class="tonic-card">
+        <div class="name">Pró-paroxítona</div>
+        <div class="mini-wf"><div class="mini-bar tonic" style="height:100%;"></div><div class="mini-bar" style="height:40%;"></div><div class="mini-bar" style="height:30%;"></div></div>
+        <div class="ex">tônica na antepenúltima</div>
+      </div>
+    </div>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">A maioria das palavras da língua é <em>paroxítona</em> — use isso como tendência, mas sempre confirme pela pronúncia.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">≠</div><h2>Tonicidade × Acentuação gráfica</h2></div>
+    <div class="pair">
+      <div class="pair-box wave">
+        <span class="tag">🔊 Onda sonora</span>
+        <div class="name">Tonicidade</div>
+        <div class="desc">Posição da sílaba forte na pronúncia (última, penúltima, antepenúltima).</div>
+      </div>
+      <div class="pair-box mark">
+        <span class="tag">✎ Marca escrita</span>
+        <div class="name">Acentuação gráfica</div>
+        <div class="desc">Por que há um acento no papel — hiato, terminação, ditongo aberto etc.</div>
+      </div>
+    </div>
+    <table class="cmp">
+      <tr><th>Pergunta típica</th><th>Resposta</th></tr>
+      <tr><td>"Classifique quanto à tonicidade"</td><td class="wave-col">Oxítona / paroxítona / pró-paroxítona</td></tr>
+      <tr><td>"Justifique o acento gráfico"</td><td class="mark-col">Regra de acentuação (hiato, terminação, etc.)</td></tr>
+    </table>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div>Pergunta "qual a tonicidade?" respondida com <span class="wrong">"tem acento por hiato"</span> — <span class="correct">Errado. Isso justifica o acento, não classifica a tonicidade.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✓</div><h2>A única coincidência total</h2></div>
+    <p>Nas <strong class="term">pró-paroxítonas</strong>, tonicidade e acentuação sempre coincidem: <strong class="term2">todas são acentuadas</strong>, sem exceção.</p>
+    <p style="font-size:14px; color:var(--sub);">Já em oxítonas e paroxítonas, o acento aparece só se a palavra se encaixar numa regra específica — nem toda oxítona ou paroxítona tem acento.</p>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Toda palavra com acento gráfico é oxítona</span> — <span class="correct">Errado. "Responsável" é paroxítona; "exército" é pró-paroxítona — ambas acentuadas.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">📜</div><h2>Novo Acordo Ortográfico</h2></div>
+    <div class="chips">
+      <span class="chip">vigência: 01/01/2016</span>
+      <span class="chip">facultativo até 31/12/2015</span>
+      <span class="chip">muda só a grafia</span>
+      <span class="chip">~0,05% das palavras alteradas</span>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">O acordo mudou pronúncia ou sintaxe</span> — <span class="correct">Errado. Altera apenas a escrita — 99,95% das palavras permaneceram iguais.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">🎯</div><h2>Estratégia de estudo por banca</h2></div>
+    <table class="cmp">
+      <tr><th>Banca</th><th>Prioridade</th></tr>
+      <tr><td class="wave-col">FCC</td><td>Cobra fortemente <strong class="term">Verbo</strong> — reforce esse módulo</td></tr>
+      <tr><td class="mark-col">Sesp / Cebraspe</td><td>Menos foco em verbo — priorize <strong class="term2">sintaxe, regência, pronomes e reescrita</strong></td></tr>
+    </table>
+    <p style="font-size:14px; color:var(--sub);">Estude sempre com o edital aberto, marcando tópicos e associando-os aos módulos.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✎</div><h2>Casos resolvidos</h2></div>
+    <div class="case">
+      <div class="case-title"><span>além (a-lém)</span><span class="verdict">Oxítona</span></div>
+      <div class="reason">Acento por regra de oxítonas terminadas em "-ém".</div>
+    </div>
+    <div class="case">
+      <div class="case-title"><span>país (pa-ís)</span><span class="verdict">Oxítona</span></div>
+      <div class="reason">Acento por hiato — o "i" tônico sozinho na sílaba.</div>
+    </div>
+    <div class="case">
+      <div class="case-title"><span>saúde (sa-ú-de)</span><span class="verdict">Paroxítona</span></div>
+      <div class="reason">Acento por hiato.</div>
+    </div>
+    <div class="case">
+      <div class="case-title"><span>exército (e-xér-ci-to)</span><span class="verdict">Pró-paroxítona</span></div>
+      <div class="reason">Acento obrigatório — toda pró-paroxítona é acentuada.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">Ø</div><h2>Pegadinhas mais comuns</h2></div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Decorar listas extensas de "s/z, g/j" para emprego das letras</span> — <span class="correct">Baixo custo-benefício. O ganho real vem de leitura e exercícios.</span></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Pular módulos intermediários (2→9)</span> — <span class="correct">Errado. Compromete sintaxe, pontuação, regência e concordância mais à frente.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✓</div><h2>Revisão relâmpago — certo ou errado</h2></div>
+    <div class="review-grid">
+      <div class="review-row"><span>Tonicidade e acentuação gráfica são a mesma coisa</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>Todas as pró-paroxítonas são acentuadas</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>Toda palavra com acento gráfico é oxítona</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>Monossílabos como "de" e "em" são átonos</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>O Novo Acordo Ortográfico alterou a pronúncia das palavras</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>O acordo é obrigatório no Brasil desde 01/01/2016</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>A FCC costuma cobrar fortemente o módulo de Verbo</span><span class="verdict ok">Certo</span></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Fonte: material de estudo — Apresentação e Ortografia</span>
+    <span>Preparado para revisão · Concurso Banco do Brasil</span>
+  </div>
+
+</div>
+
+<!-- ============ REVISÃO DE BOLSO ============ -->
+<div class="pocket-divider"><div class="line"></div><span>Revisão de bolso</span><div class="line"></div></div>
+
+<div class="pocket-wrap">
+  <div class="pocket-card">
+
+    <div class="pocket-head">
+      <div>
+        <div class="eb">Ficha de Bolso</div>
+        <h3>Apresentação e Ortografia</h3>
+      </div>
+      <div class="pocket-tag">Língua Portuguesa</div>
+    </div>
+
+    <div class="pocket-body">
+
+      <div class="p-sec">
+        <div class="p-sec-title">Tonicidade × Acentuação</div>
+        <table class="mini">
+          <tr><th>Tonicidade</th><th>Acentuação gráfica</th></tr>
+          <tr><td>Posição da sílaba forte</td><td>Motivo do acento escrito</td></tr>
+          <tr><td>Última/penúltima/antepenúltima</td><td>Hiato, terminação, ditongo aberto</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Classificação por tonicidade</div>
+        <table class="mini">
+          <tr><th>Tipo</th><th>Tônica na...</th></tr>
+          <tr><td>Oxítona</td><td>Última sílaba</td></tr>
+          <tr><td>Paroxítona</td><td>Penúltima sílaba</td></tr>
+          <tr><td>Pró-paroxítona</td><td>Antepenúltima — sempre acentuada</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Novo Acordo Ortográfico</div>
+        <div class="pocket-chips">
+          <span>01/01/2016</span>
+          <span>só grafia</span>
+          <span>~0,05% mudou</span>
+        </div>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Por banca</div>
+        <table class="mini">
+          <tr><th>Banca</th><th>Prioridade</th></tr>
+          <tr><td>FCC</td><td>Verbo (módulo 11)</td></tr>
+          <tr><td>Sesp/Cebraspe</td><td>Sintaxe, regência, pronomes, reescrita</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Checklist final</div>
+        <ul class="checklist">
+          <li><span class="box"></span>Sei distinguir tonicidade (posição) de acentuação gráfica (motivo)?</li>
+          <li><span class="box"></span>Classifico oxítona/paroxítona/pró-paroxítona só "ouvindo" a sílaba forte?</li>
+          <li><span class="box"></span>Lembro que todas as pró-paroxítonas são acentuadas?</li>
+          <li><span class="box"></span>Aplico o roteiro: tonicidade → acentuação → hífen → emprego das letras?</li>
+          <li><span class="box"></span>Sei que o Acordo muda só a grafia e vale desde 01/01/2016?</li>
+          <li><span class="box"></span>Ajusto o foco pela banca (FCC = verbo; Sesp/Cebraspe = sintaxe/regência)?</li>
+          <li><span class="box"></span>Evito responder o motivo do acento quando a pergunta é só sobre tonicidade?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pocket-footer">
+      <span>Revisão de bolso · Apresentação e Ortografia</span>
+      <span>Concurso Banco do Brasil</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

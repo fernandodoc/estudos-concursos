@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Uso do Hífen | Concurso BB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6F0; --ink:#2A1F2E; --sub:#6B5F6A; --line:#E8DEDF;
+    --explicit:#F5C90B; --explicit-ink:#6B5300; --explicit-soft:#FDF3CC;
+    --presup:#2F5F8A; --presup-soft:#E6EEF4;
+    --infer:#6E4C93; --infer-soft:#EFE7F5;
+    --wave:#1E7F82; --wave-deep:#155F61; --wave-soft:#DFEFEE;
+    --accent-mark:#A8442E; --accent-soft:#F6E3DD;
+    --red:#B03A2E; --red-soft:#F8E9E6; --green:#2E7D4F; --green-soft:#E5F1E9;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.65; padding-bottom:80px;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  .hero{padding:48px 24px 0;}
+  .hero-inner{max-width:880px; margin:0 auto;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--wave-deep); font-weight:600;}
+  h1{font-family:'Literata', serif; font-weight:700; font-size:clamp(28px,4.4vw,44px); letter-spacing:-0.01em; margin:12px 0 8px; color:var(--ink);}
+  .hero p.sub{color:var(--sub); font-size:16px; max-width:620px; margin:0 0 26px;}
+
+  /* signature: hyphen bridge */
+  .bridge-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:28px 26px; margin-bottom:-30px; position:relative; z-index:2; box-shadow:0 10px 30px rgba(60,30,40,0.06); display:flex; align-items:center; justify-content:center; gap:0;}
+  .bridge-block{background:var(--wave-soft); border:2px solid var(--wave); border-radius:10px; padding:16px 22px; text-align:center;}
+  .bridge-block .k{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; color:var(--wave-deep); letter-spacing:0.05em;}
+  .bridge-block .w{font-family:'Literata',serif; font-weight:700; font-size:17px; color:var(--wave-deep); margin-top:3px;}
+  .bridge-hyphen{width:44px; height:6px; background:var(--accent-mark); border-radius:3px; margin:0 -4px; position:relative; z-index:1;}
+  @media (max-width:480px){ .bridge-card{flex-direction:column; gap:10px;} .bridge-hyphen{width:6px; height:30px;} }
+
+  section.card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:26px 28px; margin-top:22px;}
+  .card.first{margin-top:48px; padding-top:36px;}
+  .card-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .card-icon{width:34px; height:34px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center; background:var(--explicit-soft); color:var(--explicit-ink); font-size:16px; font-weight:700; font-family:'Literata',serif;}
+  .card-head h2{font-family:'Literata', serif; font-weight:700; font-size:21px; margin:0; color:var(--ink);}
+  .card p{margin:10px 0;}
+  .card ul{margin:10px 0; padding-left:20px;}
+  .card li{margin:6px 0;}
+  strong.term{color:var(--wave-deep); font-weight:600;}
+  strong.term2{color:var(--accent-mark); font-weight:600;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--wave-soft); color:var(--wave-deep); padding:6px 12px; border-radius:20px; font-weight:600;}
+  .chip.hyph{background:var(--accent-soft); color:var(--accent-mark);}
+
+  /* decision flow steps */
+  .flow-step{display:flex; gap:14px; align-items:flex-start; margin:10px 0; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:13px 15px;}
+  .flow-step .q{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; color:#fff; background:var(--wave); width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none;}
+  .flow-step .body{font-size:13.5px;}
+  .flow-step .body .yn{font-family:'IBM Plex Mono',monospace; font-size:11.5px; margin-top:4px; color:var(--sub);}
+  .flow-step .body .yn b{color:var(--accent-mark);}
+  .flow-step .body .yn b.no{color:var(--wave-deep);}
+
+  /* rule card (reused from acentuação) */
+  .rule-card{display:flex; gap:16px; align-items:flex-start; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:16px 17px; margin:14px 0;}
+  .rule-num{font-family:'Literata',serif; font-weight:700; font-size:20px; color:#fff; background:var(--wave); width:34px; height:34px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center;}
+  .rule-body .rule-title{font-family:'Literata',serif; font-weight:700; font-size:15.5px; color:var(--wave-deep); margin-bottom:4px;}
+  .rule-body .rule-desc{font-size:13.5px; color:var(--sub);}
+  .rule-body .rule-ex{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink); margin-top:6px;}
+  .rule-body .rule-ex .h{color:var(--accent-mark); font-weight:700;}
+  .rule-body .rule-ex .u{color:var(--wave-deep); font-weight:700;}
+
+  table.cmp{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+  table.cmp th{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; text-align:left; padding:10px 12px; border-bottom:2px solid var(--ink); color:var(--sub);}
+  table.cmp td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.cmp tr:last-child td{border-bottom:none;}
+  table.cmp td.wave-col{color:var(--wave-deep); font-weight:600;}
+  table.cmp td.mark-col{color:var(--accent-mark); font-weight:600;}
+
+  /* case grid: correct spelling reference */
+  .spell-grid{display:flex; flex-direction:column; gap:6px; margin:16px 0;}
+  .spell-row{display:flex; justify-content:space-between; align-items:center; gap:10px; background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:9px 14px;}
+  .spell-row .word{font-family:'Literata',serif; font-weight:600; font-size:15px;}
+  .spell-row .word .h{color:var(--accent-mark);}
+  .spell-row .tag{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:10.5px; padding:3px 10px; border-radius:20px; flex:none;}
+  .spell-row .tag.hy{background:var(--accent-soft); color:var(--accent-mark);}
+  .spell-row .tag.no{background:var(--wave-soft); color:var(--wave-deep);}
+
+  .flag{display:flex; gap:12px; align-items:flex-start; background:var(--explicit-soft); border:1px solid #EBD98A; border-left:4px solid var(--explicit-ink); border-radius:0 10px 10px 0; padding:13px 16px; margin:16px 0;}
+  .flag .mark{font-family:'Literata',serif; font-weight:700; color:var(--explicit-ink); font-size:13px; flex:none;}
+  .flag .txt{font-size:14px; color:var(--ink);}
+  .flag .txt em{font-style:normal; font-weight:600; color:var(--wave-deep);}
+
+  .pitfall{display:flex; gap:12px; align-items:flex-start; background:var(--red-soft); border:1px solid #EFC5BC; border-radius:10px; padding:12px 15px; margin:12px 0;}
+  .pitfall .x{width:22px; height:22px; border-radius:50%; background:var(--red); color:#fff; flex:none; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-top:1px;}
+  .pitfall .wrong{color:var(--red); text-decoration:line-through; font-weight:500;}
+  .pitfall .correct{color:var(--green); font-weight:600;}
+
+  .review-grid{display:flex; flex-direction:column; gap:8px; margin:16px 0;}
+  .review-row{display:flex; justify-content:space-between; align-items:center; gap:12px; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14px;}
+  .verdict{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:11px; padding:3px 9px; border-radius:20px; flex:none;}
+  .verdict.err{background:var(--red-soft); color:var(--red);}
+  .verdict.ok{background:var(--green-soft); color:var(--green);}
+
+  .footer{margin-top:50px; padding-top:20px; border-top:1px solid var(--line); font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--sub); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* ============ POCKET REVIEW ============ */
+  .pocket-divider{max-width:880px; margin:60px auto 0; padding:0 24px; display:flex; align-items:center; gap:14px;}
+  .pocket-divider .line{flex:1; height:1px; background:var(--line);}
+  .pocket-divider span{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub);}
+
+  .pocket-wrap{max-width:640px; margin:24px auto 0; padding:0 24px;}
+  .pocket-card{background:#fff; border:2px solid var(--wave-deep); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(20,60,60,0.10);}
+  .pocket-head{background:var(--wave-deep); color:#EAF6F5; padding:18px 22px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+  .pocket-head .eb{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#A8D8D5;}
+  .pocket-head h3{font-family:'Literata',serif; font-weight:700; font-size:19px; margin:3px 0 0;}
+  .pocket-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:20px; white-space:nowrap;}
+
+  .pocket-body{padding:18px 22px 22px;}
+  .p-sec{margin-bottom:16px;}
+  .p-sec:last-child{margin-bottom:0;}
+  .p-sec-title{font-family:'Literata',serif; font-weight:700; font-size:12.5px; text-transform:uppercase; letter-spacing:0.03em; color:var(--wave-deep); margin:0 0 7px; display:flex; align-items:center; gap:7px;}
+  .p-sec-title::before{content:""; width:14px; height:2px; background:var(--accent-mark); flex:none;}
+
+  table.mini{width:100%; border-collapse:collapse; font-size:12.5px;}
+  table.mini th{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:9.5px; text-transform:uppercase; background:var(--wave-soft); color:var(--wave-deep); text-align:left; padding:6px 8px;}
+  table.mini td{padding:6px 8px; border-bottom:1px solid var(--line);}
+  table.mini tr:last-child td{border-bottom:none;}
+
+  .pocket-chips{display:flex; flex-wrap:wrap; gap:5px;}
+  .pocket-chips span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:var(--wave-soft); color:var(--wave-deep); padding:3px 9px; border-radius:14px; font-weight:600;}
+  .pocket-chips span.hy{background:var(--accent-soft); color:var(--accent-mark);}
+
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .checklist li{display:flex; gap:9px; align-items:flex-start; font-size:12.5px;}
+  .checklist .box{width:15px; height:15px; border:1.5px solid var(--wave); border-radius:3px; flex:none; margin-top:2px;}
+
+  .pocket-footer{background:var(--paper); border-top:1px dashed var(--line); padding:9px 22px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--sub); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Material de Estudo · Língua Portuguesa — Aula 04</div>
+    <h1>Ortografia — O Uso do Hífen</h1>
+    <p class="sub">A lógica por trás das regras de prefixação: quando unir, quando separar com hífen, e as exceções que a banca mais adora testar.</p>
+
+    <div class="bridge-card">
+      <div class="bridge-block"><div class="k">prefixo</div><div class="w">pré</div></div>
+      <div class="bridge-hyphen"></div>
+      <div class="bridge-block"><div class="k">palavra</div><div class="w">história</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="card first">
+    <div class="card-head"><div class="card-icon">–</div><h2>O que é o hífen e onde ele aparece</h2></div>
+    <p><strong class="term">Hífen</strong>: sinal que marca a união de elementos. Os dois cenários que a prova cobra:</p>
+    <ul>
+      <li><strong class="term">Prefixo + palavra</strong> (radical): <em>pré-escola</em></li>
+      <li><strong class="term">Palavra + palavra</strong> (composto): <em>mesa-redonda</em></li>
+    </ul>
+    <p style="font-size:14px; color:var(--sub);">Outros usos, fora do foco desta aula: marcar ênclise/mesóclise (<em>dar-te-ei</em>) e a translineação (quebra de linha).</p>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">Antes de aplicar qualquer regra, identifique o cenário: <em>é prefixo + palavra ou palavra + palavra?</em> As regras mudam completamente.</div>
+    </div>
+    <p style="font-size:14px;"><strong class="term">Prefixos comuns</strong> cobrados em prova:</p>
+    <div class="chips">
+      <span class="chip">anti-</span><span class="chip">mini-</span><span class="chip">co-</span><span class="chip">inter-</span>
+      <span class="chip">super-</span><span class="chip">hiper-</span><span class="chip">sub-</span><span class="chip">circum-</span>
+      <span class="chip">pan-</span><span class="chip">pré-</span><span class="chip">pós-</span><span class="chip">pró-</span>
+      <span class="chip">vice-</span><span class="chip">ex-</span><span class="chip">sem-</span><span class="chip">além-</span>
+      <span class="chip">aquém-</span><span class="chip">recém-</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">?</div><h2>Roteiro de decisão — passo a passo</h2></div>
+    <div class="flow-step">
+      <div class="q">1</div>
+      <div class="body">É prefixo + palavra? <div class="yn">Confirme o formato antes de tudo.</div></div>
+    </div>
+    <div class="flow-step">
+      <div class="q">2</div>
+      <div class="body">A base começa com <strong>H</strong>? <div class="yn"><b>Sim</b> → hífen quase sempre (exceção: sub-humano/subumano)</div></div>
+    </div>
+    <div class="flow-step">
+      <div class="q">3</div>
+      <div class="body">O prefixo termina em vogal? <div class="yn">Vogal <b>igual</b> à da base → hífen · vogal <b class="no">diferente</b> → une · consoante na base → une (dobra R/S)</div></div>
+    </div>
+    <div class="flow-step">
+      <div class="q">4</div>
+      <div class="body">O prefixo termina em consoante? <div class="yn">Consoante <b>igual</b> à da base → hífen · consoante <b class="no">diferente</b> ou vogal → une</div></div>
+    </div>
+    <div class="flow-step">
+      <div class="q">5</div>
+      <div class="body">É exceção especial? <div class="yn"><b>co-</b> · <b>sub+R</b> · <b>sub+H</b> · <b>pan-/circum-</b> + vogal ou nasal</div></div>
+    </div>
+    <div class="flow-step">
+      <div class="q">6</div>
+      <div class="body">O prefixo está na lista "sempre com hífen"? <div class="yn"><b>ex-, sem-, além-, aquém-, recém-, pós-, pré-, pró-, vice-</b> → hífen sempre</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">H</div><h2>Base iniciada por H — o gatilho automático</h2></div>
+    <div class="rule-card">
+      <div class="rule-num">H</div>
+      <div class="rule-body">
+        <div class="rule-title">Base com H → hífen, quase sempre</div>
+        <div class="rule-desc">Única exceção com dupla forma admitida: sub-humano / subumano.</div>
+        <div class="rule-ex"><span class="h">pré-história</span> · <span class="h">super-homem</span> · <span class="h">super-herói</span> · <span class="h">anti-higiênico</span> · <span class="h">antihistamínico</span></div>
+      </div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Toda base iniciada por H segue a regra geral de vogal/consoante</span> — <span class="correct">Errado. O H é um gatilho à parte — pede hífen quase sempre.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">V</div><h2>Prefixo terminado em vogal</h2></div>
+    <table class="cmp">
+      <tr><th>Situação</th><th>Resultado</th><th>Exemplo</th></tr>
+      <tr><td>Vogal igual à da base</td><td class="mark-col">Hífen</td><td>anti-inflamatório · micro-ondas</td></tr>
+      <tr><td>Vogal diferente da base</td><td class="wave-col">Une</td><td>autoescola</td></tr>
+      <tr><td>Base começa com consoante</td><td class="wave-col">Une (ajusta R/S)</td><td>antitetânica</td></tr>
+    </table>
+    <div class="flag">
+      <span class="mark">i</span>
+      <div class="txt">Se a base começa com <strong>R</strong> ou <strong>S</strong>, <em>dobra-se a consoante</em> em vez de usar hífen: <em>minissaia, antirrábica</em>.</div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">anti-rábica, mini-saia</span> — <span class="correct">Errado. O certo é dobrar a consoante: antirrábica, minissaia.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">C</div><h2>Prefixo terminado em consoante</h2></div>
+    <table class="cmp">
+      <tr><th>Situação</th><th>Resultado</th><th>Exemplo</th></tr>
+      <tr><td>Consoante igual à da base</td><td class="mark-col">Hífen</td><td>inter-regional</td></tr>
+      <tr><td>Consoante diferente ou vogal</td><td class="wave-col">Une</td><td>hipermercado · superinteressante</td></tr>
+    </table>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">"Inter-regional" leva hífen por causa das vogais</span> — <span class="correct">Errado. É por consoantes iguais (R+R), não por vogal.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✕</div><h2>Exceções especiais</h2></div>
+    <div class="rule-card">
+      <div class="rule-num">co-</div>
+      <div class="rule-body">
+        <div class="rule-title">Une mesmo com vogais iguais</div>
+        <div class="rule-ex"><span class="u">cooperação</span> · <span class="u">coordenação</span></div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">sub</div>
+      <div class="rule-body">
+        <div class="rule-title">sub + R → hífen · sub + H → dupla forma</div>
+        <div class="rule-ex"><span class="h">sub-raça</span> · <span class="h">sub-humano</span> / <span class="u">subumano</span></div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">pan</div>
+      <div class="rule-body">
+        <div class="rule-title">pan-/circum- + vogal ou nasal (m, n) → hífen</div>
+        <div class="rule-ex"><span class="h">pan-americano</span> · <span class="h">circum-navegação</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">∞</div><h2>Prefixos que sempre exigem hífen</h2></div>
+    <div class="chips">
+      <span class="chip hyph">ex-</span><span class="chip hyph">sem-</span><span class="chip hyph">além-</span>
+      <span class="chip hyph">aquém-</span><span class="chip hyph">recém-</span><span class="chip hyph">pós-</span>
+      <span class="chip hyph">pré-</span><span class="chip hyph">pró-</span><span class="chip hyph">vice-</span>
+    </div>
+    <p style="font-size:14px; color:var(--sub);">Independente da letra seguinte — esses prefixos hifenizam <strong class="term2">sempre</strong>: ex-namorado, ex-presidente, sem-terra, além-mar, aquém-mar, recém-nascido, pós-graduação, pré-operatório, pró-reitor, vice-presidente.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">+</div><h2>Compostos por palavras</h2></div>
+    <p>Diferente da prefixação — aqui são duas <strong class="term">palavras completas</strong> unidas: mesa-redonda, além-mar, aquém-mar, sem-terra.</p>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Confundir composto lexical com prefixação</span> — <span class="correct">Errado. "Mesa-redonda" (duas palavras) ≠ "pré-história" (prefixo + palavra) — a lógica de análise é diferente.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✎</div><h2>Referência de grafia — as que a banca mais adora</h2></div>
+    <div class="spell-grid">
+      <div class="spell-row"><span class="word">micro<span class="h">-</span>ondas</span><span class="tag hy">com hífen</span></div>
+      <div class="spell-row"><span class="word">autoescola</span><span class="tag no">sem hífen</span></div>
+      <div class="spell-row"><span class="word">antitetânica</span><span class="tag no">sem hífen</span></div>
+      <div class="spell-row"><span class="word">superinteressante</span><span class="tag no">sem hífen</span></div>
+      <div class="spell-row"><span class="word">pan<span class="h">-</span>americano</span><span class="tag hy">com hífen</span></div>
+      <div class="spell-row"><span class="word">vice<span class="h">-</span>presidente</span><span class="tag hy">com hífen</span></div>
+      <div class="spell-row"><span class="word">antirrábica</span><span class="tag no">sem hífen (dobro de R)</span></div>
+      <div class="spell-row"><span class="word">minissaia</span><span class="tag no">sem hífen (dobro de S)</span></div>
+      <div class="spell-row"><span class="word">cooperação</span><span class="tag no">sem hífen</span></div>
+      <div class="spell-row"><span class="word">super<span class="h">-</span>homem</span><span class="tag hy">com hífen</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">Ø</div><h2>Pegadinhas mais comuns</h2></div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">co- segue "vogais iguais → hífen"</span> — <span class="correct">Errado. co- une sempre: cooperação, coordenação.</span></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Esquecer o "H gatilho"</span> — <span class="correct">Base com H pede hífen quase sempre — única exceção é sub-humano/subumano.</span></div>
+    </div>
+    <div class="pitfall">
+      <span class="x">✕</span>
+      <div><span class="wrong">Ignorar os "sempre com hífen"</span> — <span class="correct">ex-, sem-, além-, aquém-, recém-, pós-, pré-, pró-, vice- hifenizam sempre, sem exceção.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><div class="card-icon">✓</div><h2>Revisão relâmpago — certo ou errado</h2></div>
+    <div class="review-grid">
+      <div class="review-row"><span>Base iniciada por H pede hífen quase sempre</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>"Sub-humano" é a única grafia correta, sem alternativa</span><span class="verdict err">Errado (subumano também é correto)</span></div>
+      <div class="review-row"><span>"Cooperação" deveria ter hífen por vogais iguais</span><span class="verdict err">Errado</span></div>
+      <div class="review-row"><span>"Inter-regional" leva hífen por consoantes iguais</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>"Antirrábica" e "minissaia" levam hífen</span><span class="verdict err">Errado (dobra-se a consoante)</span></div>
+      <div class="review-row"><span>"Ex-" hifeniza sempre, independente da letra seguinte</span><span class="verdict ok">Certo</span></div>
+      <div class="review-row"><span>"Mesa-redonda" é um exemplo de prefixação</span><span class="verdict err">Errado (é composto por palavras)</span></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Fonte: material de estudo — O Uso do Hífen</span>
+    <span>Preparado para revisão · Concurso Banco do Brasil</span>
+  </div>
+
+</div>
+
+<!-- ============ ESTUDO DE BOLSO ============ -->
+<div class="pocket-divider"><div class="line"></div><span>Estudo de bolso</span><div class="line"></div></div>
+
+<div class="pocket-wrap">
+  <div class="pocket-card">
+
+    <div class="pocket-head">
+      <div>
+        <div class="eb">Ficha de Bolso</div>
+        <h3>O Uso do Hífen</h3>
+      </div>
+      <div class="pocket-tag">Língua Portuguesa</div>
+    </div>
+
+    <div class="pocket-body">
+
+      <div class="p-sec">
+        <div class="p-sec-title">Roteiro rápido</div>
+        <table class="mini">
+          <tr><th>Pergunta</th><th>Resposta</th></tr>
+          <tr><td>Base começa com H?</td><td>Hífen (exceto sub-humano/subumano)</td></tr>
+          <tr><td>Vogal igual à da base?</td><td>Hífen</td></tr>
+          <tr><td>Vogal diferente?</td><td>Une</td></tr>
+          <tr><td>Consoante igual à da base?</td><td>Hífen</td></tr>
+          <tr><td>Consoante diferente?</td><td>Une</td></tr>
+        </table>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Exceções para decorar</div>
+        <div class="pocket-chips">
+          <span class="hy">co- sempre une</span>
+          <span class="hy">sub+R = hífen</span>
+          <span class="hy">sub+H = dupla forma</span>
+          <span class="hy">pan-/circum- + vogal/nasal = hífen</span>
+        </div>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Sempre com hífen</div>
+        <div class="pocket-chips">
+          <span class="hy">ex-</span><span class="hy">sem-</span><span class="hy">além-</span><span class="hy">aquém-</span>
+          <span class="hy">recém-</span><span class="hy">pós-</span><span class="hy">pré-</span><span class="hy">pró-</span><span class="hy">vice-</span>
+        </div>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">R/S: dobra, não hifeniza</div>
+        <p style="font-size:12.5px; color:var(--sub); margin:0;">antirrábica · minissaia (prefixo vocálico + base em R/S)</p>
+      </div>
+
+      <div class="p-sec">
+        <div class="p-sec-title">Checklist final</div>
+        <ul class="checklist">
+          <li><span class="box"></span>Identifico se é prefixo+palavra ou palavra+palavra antes de decidir?</li>
+          <li><span class="box"></span>Sei que base com H pede hífen quase sempre?</li>
+          <li><span class="box"></span>Aplico "vogal igual separa, diferente une" (exceto co-)?</li>
+          <li><span class="box"></span>Sei dobrar R/S em vez de usar hífen quando o prefixo termina em vogal?</li>
+          <li><span class="box"></span>Aplico "consoante igual separa" para prefixos consonantais?</li>
+          <li><span class="box"></span>Memorizei os 9 prefixos que hifenizam sempre?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pocket-footer">
+      <span>Estudo de bolso · O Uso do Hífen</span>
+      <span>Concurso Banco do Brasil</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

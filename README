@@ -30,6 +30,58 @@ https://fernandodoc.github.io/estudos-concursos/
 3. Incluir um novo bloco (`.folder`) no `index.html`, seguindo o mesmo
    padrão dos existentes
 
+
+estudos-concursos/
+├── index.html                          # dossiê geral (a página que você já tem)
+├── assets/                             # CSS, JS e imagens compartilhados
+│   ├── css/
+│   └── js/
+│
+├── base-comum/                         # matérias que caem em quase todo edital
+│   ├── index.html
+│   ├── portugues/
+│   ├── matematica/
+│   ├── informatica/
+│   ├── atualidades/
+│   ├── raciocinio-logico/
+│   └── inteligencia-emocional/
+│
+├── banco-do-brasil/
+│   ├── index.html
+│   ├── especificas/                    # só o que é exclusivo do edital BB
+│   │   ├── conhecimentos-bancarios/
+│   │   ├── matematica-financeira/
+│   │   ├── vendas/
+│   │   └── redacao-discursiva/
+│   ├── ferramentas-de-analise/
+│   │   ├── diagnostico-forense/        # prova 2023 comentada
+│   │   └── engenharia-reversa/         # escriturário
+│   └── historico/
+│       ├── provas-anteriores/
+│       └── editais-anteriores/
+│
+├── inss/
+│   ├── index.html
+│   ├── especificas/
+│   │   ├── direito-previdenciario/
+│   │   ├── etica-no-servico-publico/
+│   │   ├── direito-constitucional/
+│   │   └── direito-administrativo/
+│   ├── ferramentas-de-analise/
+│   │   ├── diagnostico-forense/
+│   │   └── engenharia-reversa/
+│   └── historico/
+│       ├── provas-anteriores/
+│       └── editais-anteriores/
+│
+└── caixa/
+    ├── index.html
+    ├── especificas/
+    ├── ferramentas-de-analise/
+    └── historico/
+
+
+
 banco-do-brasil/
 ├── index.html
 ├── provas-anteriores/
